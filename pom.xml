@@ -11,7 +11,10 @@
 		<encoding>UTF-8</encoding>
 		<plugin.compiler.version>3.1</plugin.compiler.version>
 		<plugin.resources.version>2.6</plugin.resources.version>
-		<plugin.war.version>2.4</plugin.war.version>
+		<plugin.source.version>2.2.1</plugin.source.version>
+		<plugin.javadoc.version>2.9.1</plugin.javadoc.version>
+		<plugin.release.version>2.3</plugin.release.version>
+		<jgit.version>1.9.1</jgit.version>
 		<!-- 公共包 -->
 		<slf4j.version>1.7.5</slf4j.version>
 		<junit.version>4.11</junit.version>
@@ -19,6 +22,11 @@
 		<coo.version>2.0.4-SNAPSHOT</coo.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>jnoee</groupId>
+			<artifactId>coo.core.support</artifactId>
+			<version>${coo.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>jnoee</groupId>
 			<artifactId>coo.mvc.security</artifactId>
@@ -84,15 +92,51 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${plugin.war.version}</version>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${plugin.javadoc.version}</version>
 				<configuration>
-					<webResources>
-						<resource>
-							<directory>webapp</directory>
-						</resource>
-					</webResources>
+					<encoding>${encoding}</encoding>
+					<outputEncoding>${encoding}</outputEncoding>
 				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${plugin.source.version}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${plugin.release.version}</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<arguments>-DskipTests</arguments>
+					<providerImplementations>
+						<git>jgit</git>
+					</providerImplementations>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-jgit</artifactId>
+						<version>${jgit.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
@@ -101,6 +145,11 @@
 		<module>coo.boot.demo</module>
 		<module>coo.boot.site</module>
 	</modules>
+	<scm>
+		<connection>scm:git:https://github.com/jnoee/coo.boot.git</connection>
+		<developerConnection>scm:git:https://github.com/jnoee/coo.boot.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 	<distributionManagement>
 		<repository>
 			<id>releases</id>
