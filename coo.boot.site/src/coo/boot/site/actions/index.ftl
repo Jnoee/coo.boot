@@ -8,7 +8,7 @@
         <link href="${ctx}/themes/default/style.css" rel="stylesheet" type="text/css" />
         <link href="${ctx}/themes/css/core.css" rel="stylesheet" type="text/css" />
         <script src="${ctx}/js/site.js" type="text/javascript"></script>
-        <title>boot.main</title>
+        <title>coo.boot.site</title>
     </head>
     <body scroll="no">
         <div id="layout">
