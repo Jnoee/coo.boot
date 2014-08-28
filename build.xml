@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="NewProject" default="default" basedir=".">
-	<!-- 源项目变量定义 -->
+<project name="NewProject" default="all" basedir=".">
 	<property name="origGroupId" value="jnoee" />
 	<property name="origArtifactId" value="coo.boot" />
-	<!-- 新项目变量定义 -->
-	<property name="destGroupId" value="com.none" />
-	<property name="destArtifactId" value="demo" />
-	<property name="destDir" value="d:/${destArtifactId}" />
-	<script language="javascript">
-		<![CDATA[
-		    var origGroupId = project.getProperty("origGroupId");
-			var origArtifactId = project.getProperty("origArtifactId");
-			var origPackageName = "" + origArtifactId;
-			var origPackagePath = origPackageName.replace(/\./g, "/");
-		    project.setProperty("origPackageName", origPackageName);
-			project.setProperty("origPackagePath", origPackagePath);
-		
-			var destGroupId = project.getProperty("destGroupId");
-			var destArtifactId = project.getProperty("destArtifactId");
-			var destPackageName = destGroupId + "." + destArtifactId;
-			var destPackagePath = destPackageName.replace(/\./g, "/");
-		    project.setProperty("destPackageName", destPackageName);
-			project.setProperty("destPackagePath", destPackagePath);
-		]]>
-	</script>
-	<target name="default" description="构建新项目">
-		<echo>${origArtifactId}</echo>
-		<antcall target="init" />
-		<antcall target="modify.pom" />
-		<antcall target="modify.package" />
-		<antcall target="modify.config" />
-		<antcall target="destroy" />
+
+	<target name="all" depends="init,copy.project,modify.pom,modify.package,modify.config,destroy" description="构建新项目" />
+
+	<target name="init">
+		<input message="生成项目到哪个目录：" addproperty="destDir" defaultvalue="d:/demo" />
+		<input message="生成项目的groupId：" addproperty="destGroupId" defaultvalue="com.none" />
+		<input message="生成项目的artifactId：" addproperty="destArtifactId" defaultvalue="demo" />
+		<script language="javascript">
+			<![CDATA[
+			    var origGroupId = project.getProperty("origGroupId");
+				var origArtifactId = project.getProperty("origArtifactId");
+				var origPackageName = "" + origArtifactId;
+				var origPackagePath = origPackageName.replace(/\./g, "/");
+			    project.setProperty("origPackageName", origPackageName);
+				project.setProperty("origPackagePath", origPackagePath);
+			
+				var destGroupId = project.getProperty("destGroupId");
+				var destArtifactId = project.getProperty("destArtifactId");
+				var destPackageName = destGroupId + "." + destArtifactId;
+				var destPackagePath = destPackageName.replace(/\./g, "/");
+			    project.setProperty("destPackageName", destPackageName);
+				project.setProperty("destPackagePath", destPackagePath);
+			]]>
+		</script>
 	</target>
-	<target name="init" description="清理项目成为一个纯Maven项目">
+
+	<target name="copy.project" description="整理项目成为一个纯Maven项目并复制到目标目录">
+		<echo>${destDir}</echo>
 		<copy todir="${destDir}">
 			<fileset dir=".">
 				<include name="*/src/" />
@@ -46,6 +43,7 @@
 			</fileset>
 		</copy>
 	</target>
+
 	<target name="modify.pom" description="修改pom.xml文件">
 		<!-- 修改主项目pom.xml -->
 		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="s" />
@@ -58,6 +56,7 @@
 		<replaceregexp file="${destDir}/${origArtifactId}.site/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="g" />
 		<replaceregexp file="${destDir}/${origArtifactId}.site/pom.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 	</target>
+
 	<target name="modify.package" description="修改项目包路径（目录）">
 		<move todir="${destDir}/${destArtifactId}.core">
 			<fileset dir="${destDir}/${origArtifactId}.core" />
@@ -82,12 +81,14 @@
 		<replaceregexp file="${destDir}/${destArtifactId}.site/src/app-context.xml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.site/src/log4j.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 	</target>
+
 	<target name="modify.config" description="修改配置文件">
 		<move file="${destDir}/${destArtifactId}.core/src/META-INF/coo/${origPackageName}.core.messages.xml" tofile="${destDir}/${destArtifactId}.core/src/META-INF/coo/${destPackageName}.core.messages.xml" />
 		<move file="${destDir}/${destArtifactId}.core/src/META-INF/coo/${origPackageName}.core.permissions.xml" tofile="${destDir}/${destArtifactId}.core/src/META-INF/coo/${destPackageName}.core.permissions.xml" />
 		<move file="${destDir}/${destArtifactId}.site/src/META-INF/coo/${origPackageName}.site.messages.xml" tofile="${destDir}/${destArtifactId}.site/src/META-INF/coo/${destPackageName}.site.messages.xml" />
 		<move file="${destDir}/${destArtifactId}.site/src/META-INF/coo/${origPackageName}.site.permissions.xml" tofile="${destDir}/${destArtifactId}.site/src/META-INF/coo/${destPackageName}.site.permissions.xml" />
 	</target>
+
 	<target name="destroy" description="清理多余目录和文件">
 		<delete includeemptydirs="true">
 			<fileset dir="${destDir}">

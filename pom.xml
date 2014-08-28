@@ -19,7 +19,7 @@
 		<slf4j.version>1.7.5</slf4j.version>
 		<junit.version>4.11</junit.version>
 		<servlet.version>2.5</servlet.version>
-		<coo.version>2.0.4-SNAPSHOT</coo.version>
+		<coo.version>2.0.5-SNAPSHOT</coo.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -138,6 +138,15 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<configuration>
+					<target>
+						<ant target="all" />
+					</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<modules>
@@ -153,11 +162,11 @@
 	<distributionManagement>
 		<repository>
 			<id>releases</id>
-			<url>file:///d:/Work/Git/github/maven/releases</url>
+			<url>file:///d:/Work/Git/maven/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>file:///d:/Work/Git/github/maven/snapshots</url>
+			<url>file:///d:/Work/Git/maven/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 </project>
