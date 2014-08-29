@@ -138,15 +138,6 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.7</version>
-				<configuration>
-					<target>
-						<ant target="all" />
-					</target>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<modules>
