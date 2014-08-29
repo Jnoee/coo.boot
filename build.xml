@@ -29,7 +29,6 @@
 	</target>
 
 	<target name="copy.project" description="整理项目成为一个纯Maven项目并复制到目标目录">
-		<echo>${destDir}</echo>
 		<copy todir="${destDir}">
 			<fileset dir=".">
 				<include name="*/src/" />
