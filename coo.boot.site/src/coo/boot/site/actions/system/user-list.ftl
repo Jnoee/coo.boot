@@ -32,15 +32,13 @@
 					<td>${user.modifier.name}</td>
                     <td class="${user.enabled?string(StatusColor.GREEN, StatusColor.GRAY)}">${user.enabled?string("启用","停用")}</td>
                     <td>
-                        <@dwz.a href="/system/user-edit?userId=${user.id}" target="dialog" title="编辑用户">编辑</@dwz.a>
-                        |
+                        <@dwz.a href="/system/user-edit?user=${user.id}" target="dialog" title="编辑用户">编辑</@dwz.a>
                         <#if user.enabled>
-                            <@dwz.a href="/system/user-disable?userId=${user.id}" target="ajaxTodo" title="确定要禁用吗？">禁用</@dwz.a>
+                            <@dwz.a href="/system/user-disable?user=${user.id}" target="ajaxTodo" title="您确定要停用该用户吗？">停用</@dwz.a>
                         <#else>
-                            <@dwz.a href="/system/user-enable?userId=${user.id}" target="ajaxTodo" title="确定要启用吗？">启用</@dwz.a>
+                            <@dwz.a href="/system/user-enable?user=${user.id}" target="ajaxTodo" title="您确定要启用该用户吗？">启用</@dwz.a>
                         </#if>
-                        |
-                        <@dwz.a href="/system/user-pwd-reset?userId=${user.id}" target="dialog" width="SS" height="SSS">重置密码</@dwz.a>
+                        <@dwz.a href="/system/user-pwd-reset?user=${user.id}" target="dialog" width="SS" height="SSS">重置密码</@dwz.a>
                     </td>
                 </tr>
                 </#list>

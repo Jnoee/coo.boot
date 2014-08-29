@@ -5,7 +5,7 @@
 	            <a>已定义角色</a>
 	            <ul>
 	                <#list roles as role>
-	                	<li><@dwz.a href="/system/role-edit?roleId=${role.id}" target="ajax" rel="roleBox" roleId="${role.id}">${role.name}</@dwz.a></li>
+	                	<li><@dwz.a href="/system/role-edit?role=${role.id}" target="ajax" rel="roleBox" roleId="${role.id}">${role.name}</@dwz.a></li>
 	                </#list>
 	            </ul>
 	        </li>

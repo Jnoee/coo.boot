@@ -76,11 +76,11 @@ public class EmployeeService {
 	/**
 	 * 删除职员。
 	 * 
-	 * @param employeeId
-	 *            职员ID
+	 * @param employee
+	 *            职员
 	 */
 	@Transactional
-	public void deleteEmployee(String employeeId) {
-		employeeDao.remove(employeeId);
+	public void deleteEmployee(Employee employee) {
+		employeeDao.remove(employee);
 	}
 }

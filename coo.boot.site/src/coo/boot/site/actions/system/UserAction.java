@@ -77,8 +77,7 @@ public class UserAction {
 	public void add(Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("actor", new Actor());
-		model.addAttribute("rootOrgan", securityService.getCurrentUser()
-				.getSettings().getDefaultActor().getOrgan());
+		model.addAttribute("rootOrgan", securityService.getCurrentOrgan());
 		model.addAttribute("roles", securityService.getAllRole());
 	}
 
@@ -104,14 +103,14 @@ public class UserAction {
 	/**
 	 * 编辑用户。
 	 * 
-	 * @param userId
-	 *            用户ID
 	 * @param model
 	 *            数据模型
+	 * @param user
+	 *            用户
 	 */
 	@RequestMapping("user-edit")
-	public void edit(String userId, Model model) {
-		model.addAttribute(securityService.getUser(userId));
+	public void edit(Model model, User user) {
+		model.addAttribute(user);
 	}
 
 	/**
@@ -131,13 +130,13 @@ public class UserAction {
 	/**
 	 * 禁用用户。
 	 * 
-	 * @param userId
-	 *            用户ID
+	 * @param user
+	 *            用户
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("user-disable")
-	public ModelAndView disable(String userId) {
-		securityService.disableUser(userId);
+	public ModelAndView disable(User user) {
+		securityService.disableUser(user);
 		return NavTabResultUtils.reload(messageSource
 				.get("user.disable.success"));
 	}
@@ -145,13 +144,13 @@ public class UserAction {
 	/**
 	 * 启用用户。
 	 * 
-	 * @param userId
-	 *            用户ID
+	 * @param user
+	 *            用户
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("user-enable")
-	public ModelAndView enable(String userId) {
-		securityService.enableUser(userId);
+	public ModelAndView enable(User user) {
+		securityService.enableUser(user);
 		return NavTabResultUtils.reload(messageSource
 				.get("user.enable.success"));
 	}
@@ -159,14 +158,13 @@ public class UserAction {
 	/**
 	 * 重置用户密码。
 	 * 
-	 * @param userId
-	 *            用户ID
 	 * @param model
 	 *            数据模型
+	 * @param user
+	 *            用户
 	 */
 	@RequestMapping("user-pwd-reset")
-	public void pwdReset(String userId, Model model) {
-		model.addAttribute(securityService.getUser(userId));
+	public void pwdReset(Model model, User user) {
 		model.addAttribute("defaultPassword", AdminPermission.DEFAULT_PASSWORD);
 	}
 
@@ -181,7 +179,7 @@ public class UserAction {
 	 */
 	@RequestMapping("user-pwd-reset-save")
 	public ModelAndView pwdResetSave(String managePassword, User user) {
-		securityService.resetPassword(managePassword, user.getId());
+		securityService.resetPassword(managePassword, user);
 		return DialogResultUtils.close(messageSource
 				.get("user.pwd.reset.success"));
 	}

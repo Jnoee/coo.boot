@@ -81,12 +81,12 @@ public class CompanyService {
 	/**
 	 * 删除公司。
 	 * 
-	 * @param companyId
-	 *            公司ID
+	 * @param company
+	 *            公司
 	 */
 	@Transactional
-	@SimpleLog(entityId = "companyId", code = "company.delete.success")
-	public void deleteCompany(String companyId) {
-		companyDao.remove(companyId);
+	@SimpleLog(entityId = "company.id", code = "company.delete.success")
+	public void deleteCompany(Company company) {
+		companyDao.remove(company);
 	}
 }

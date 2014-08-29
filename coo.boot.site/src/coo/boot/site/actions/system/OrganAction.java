@@ -1,5 +1,7 @@
 package coo.boot.site.actions.system;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -30,15 +32,14 @@ public class OrganAction {
 	/**
 	 * 查看机构列表。
 	 * 
-	 * @param selectedOrganId
-	 *            选中的机构ID
 	 * @param model
 	 *            数据模型
+	 * @param selectedOrganId
+	 *            选中的机构ID
 	 */
 	@RequestMapping("organ-list")
-	public void list(String selectedOrganId, Model model) {
-		Organ rootOrgan = securityService.getCurrentUser().getSettings()
-				.getDefaultActor().getOrgan();
+	public void list(Model model, String selectedOrganId) {
+		Organ rootOrgan = securityService.getCurrentOrgan();
 		if (selectedOrganId == null) {
 			selectedOrganId = rootOrgan.getId();
 		}
@@ -54,8 +55,7 @@ public class OrganAction {
 	 */
 	@RequestMapping("organ-add")
 	public void add(Model model) {
-		Organ rootOrgan = securityService.getCurrentUser().getSettings()
-				.getDefaultActor().getOrgan();
+		Organ rootOrgan = securityService.getCurrentOrgan();
 		Organ organ = new Organ();
 		organ.setParent(rootOrgan);
 		model.addAttribute("parentOrgans", rootOrgan.getOrganTree());
@@ -81,18 +81,18 @@ public class OrganAction {
 	/**
 	 * 编辑机构。
 	 * 
-	 * @param organId
-	 *            机构ID
 	 * @param model
 	 *            数据模型
+	 * @param organ
+	 *            机构
 	 */
 	@RequestMapping("organ-edit")
-	public void edit(String organId, Model model) {
-		Organ rootOrgan = securityService.getCurrentUser().getSettings()
-				.getDefaultActor().getOrgan();
+	public void edit(Model model, Organ organ) {
+		Organ rootOrgan = securityService.getCurrentOrgan();
 		model.addAttribute("rootOrgan", rootOrgan);
-		model.addAttribute("parentOrgans", rootOrgan.getOrganTree());
-		model.addAttribute(securityService.getOrgan(organId));
+		List<Organ> parentOrgans = rootOrgan.getOrganTree();
+		parentOrgans.remove(organ);
+		model.addAttribute("parentOrgans", parentOrgans);
 	}
 
 	/**
@@ -113,17 +113,16 @@ public class OrganAction {
 	/**
 	 * 删除机构。
 	 * 
-	 * @param orgnId
-	 *            机构ID
+	 * @param organ
+	 *            机构
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("organ-delete")
-	public ModelAndView delete(String orgnId) {
-		securityService.deleteOrgan(orgnId);
+	public ModelAndView delete(Organ organ) {
+		securityService.deleteOrgan(organ);
 		return NavTabResultUtils.forward(
 				messageSource.get("organ.delete.success"),
 				"organ-list?selectedOrganId="
-						+ securityService.getCurrentUser().getSettings()
-								.getDefaultActor().getOrgan().getId());
+						+ securityService.getCurrentOrgan().getId());
 	}
 }

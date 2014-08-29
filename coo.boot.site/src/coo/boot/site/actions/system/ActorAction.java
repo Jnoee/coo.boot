@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import coo.boot.core.entity.Actor;
+import coo.boot.core.entity.User;
 import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
@@ -29,18 +30,17 @@ public class ActorAction {
 	/**
 	 * 新增职务。
 	 * 
-	 * @param userId
-	 *            关联用户ID
 	 * @param model
 	 *            数据模型
+	 * @param user
+	 *            关联用户
 	 */
 	@RequestMapping("actor-add")
-	public void add(String userId, Model model) {
+	public void add(Model model, User user) {
 		Actor actor = new Actor();
-		actor.setUser(securityService.getUser(userId));
+		actor.setUser(user);
 		model.addAttribute(actor);
-		model.addAttribute("rootOrgan", securityService.getCurrentUser()
-				.getSettings().getDefaultActor().getOrgan());
+		model.addAttribute("rootOrgan", securityService.getCurrentOrgan());
 		model.addAttribute("roles", securityService.getAllRole());
 	}
 
@@ -61,14 +61,13 @@ public class ActorAction {
 	/**
 	 * 编辑职务。
 	 * 
-	 * @param actorId
-	 *            职务ID
 	 * @param model
 	 *            数据模型
+	 * @param actor
+	 *            职务
 	 */
 	@RequestMapping("actor-edit")
-	public void edit(String actorId, Model model) {
-		model.addAttribute(securityService.getActor(actorId));
+	public void edit(Model model, Actor actor) {
 		model.addAttribute("rootOrgan", securityService.getCurrentUser()
 				.getSettings().getDefaultActor().getOrgan());
 		model.addAttribute("roles", securityService.getAllRole());
@@ -85,19 +84,19 @@ public class ActorAction {
 	public ModelAndView update(Actor actor) {
 		securityService.updateActor(actor);
 		return DialogResultUtils.closeAndReloadDialog(
-				messageSource.get("actor.update.success"), "user-edit");
+				messageSource.get("actor.edit.success"), "user-edit");
 	}
 
 	/**
 	 * 删除职务。
 	 * 
-	 * @param actorId
-	 *            职务ID
+	 * @param actor
+	 *            职务
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("actor-delete")
-	public ModelAndView delete(String actorId) {
-		securityService.deleteActor(actorId);
+	public ModelAndView delete(Actor actor) {
+		securityService.deleteActor(actor);
 		return DialogResultUtils.reload(messageSource
 				.get("actor.delete.success"));
 	}

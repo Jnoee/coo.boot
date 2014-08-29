@@ -37,13 +37,13 @@ public class RoleAction {
 	/**
 	 * 查看角色列表。
 	 * 
-	 * @param selectedRoleId
-	 *            选中的角色ID
 	 * @param model
 	 *            数据模型
+	 * @param selectedRoleId
+	 *            选中的角色ID
 	 */
 	@RequestMapping("role-list")
-	public void list(String selectedRoleId, Model model) {
+	public void list(Model model, String selectedRoleId) {
 		List<Role> roles = securityService.getAllRole();
 		if (selectedRoleId == null) {
 			selectedRoleId = roles.get(0).getId();
@@ -88,15 +88,13 @@ public class RoleAction {
 	/**
 	 * 编辑角色。
 	 * 
-	 * @param roleId
-	 *            角色ID
 	 * @param model
 	 *            数据模型
+	 * @param role
+	 *            角色
 	 */
 	@RequestMapping("role-edit")
-	public void edit(String roleId, Model model) {
-		Role role = securityService.getRole(roleId);
-		model.addAttribute(role);
+	public void edit(Role role, Model model) {
 		model.addAttribute("permissionIds",
 				permissionConfig.getPermissionIds(role.getPermissions()));
 		model.addAttribute("permissionGroups",

@@ -6,7 +6,7 @@
 
 <#macro organTreeNode organ>
 	<li>
-		<@dwz.a href="/system/organ-edit?organId=${organ.id}" target="ajax" rel="organBox" organId="${organ.id}">${organ.name}</@dwz.a>
+		<@dwz.a href="/system/organ-edit?organ=${organ.id}" target="ajax" rel="organBox" organId="${organ.id}">${organ.name}</@dwz.a>
 		<#if organ.childs?size gt 0>
 			<ul>
 		        <#list organ.childs as childOrgan>

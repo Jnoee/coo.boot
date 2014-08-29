@@ -65,14 +65,14 @@ public class CompanyAction {
 	/**
 	 * 编辑公司。
 	 * 
-	 * @param companyId
-	 *            公司ID
 	 * @param model
 	 *            数据模型
+	 * @param company
+	 *            公司
 	 */
 	@RequestMapping("company-edit")
-	public void edit(String companyId, Model model) {
-		model.addAttribute(companyService.getCompany(companyId));
+	public void edit(Model model, Company company) {
+		model.addAttribute(company);
 	}
 
 	/**
@@ -92,13 +92,13 @@ public class CompanyAction {
 	/**
 	 * 删除公司。
 	 * 
-	 * @param companyId
-	 *            公司ID
+	 * @param company
+	 *            公司
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("company-delete")
-	public ModelAndView delete(String companyId) {
-		companyService.deleteCompany(companyId);
+	public ModelAndView delete(Company company) {
+		companyService.deleteCompany(company);
 		return NavTabResultUtils.reload(messageSource
 				.get("company.delete.success"));
 	}

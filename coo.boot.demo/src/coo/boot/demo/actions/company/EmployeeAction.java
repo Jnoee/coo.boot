@@ -74,14 +74,13 @@ public class EmployeeAction {
 	/**
 	 * 编辑职员。
 	 * 
-	 * @param employeeId
-	 *            职员ID
 	 * @param model
 	 *            数据模型
+	 * @param employee
+	 *            职员
 	 */
 	@RequestMapping("employee-edit")
-	public void edit(String employeeId, Model model) {
-		model.addAttribute(employeeService.getEmployee(employeeId));
+	public void edit(Model model, Employee employee) {
 		model.addAttribute("companys", companyService.getAllCompany());
 	}
 
@@ -103,14 +102,14 @@ public class EmployeeAction {
 	/**
 	 * 删除职员。
 	 * 
-	 * @param employeeId
-	 *            职员ID
+	 * @param employee
+	 *            职员
 	 * 
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("employee-delete")
-	public ModelAndView delete(String employeeId) {
-		employeeService.deleteEmployee(employeeId);
+	public ModelAndView delete(Employee employee) {
+		employeeService.deleteEmployee(employee);
 		return NavTabResultUtils.reload(messageSource
 				.get("employee.delete.success"));
 	}

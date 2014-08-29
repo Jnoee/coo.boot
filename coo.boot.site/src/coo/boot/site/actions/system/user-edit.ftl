@@ -22,7 +22,7 @@
 	            </dl>
 	            <div class="divider"></div>
 	            <div class="panel">
-	                <h1>职务列表[<@dwz.a href="/system/actor-add?userId=${user.id}" target="dialog">新增职务</@dwz.a>]</h1>
+	                <h1>职务列表[<@dwz.a href="/system/actor-add?user=${user.id}" target="dialog">新增职务</@dwz.a>]</h1>
 	                <div>
 	                    <table class="list" width="98%">
 	                        <thead>
@@ -40,9 +40,9 @@
 		                                <td align="center">${actor.organ.name}</td>
 		                                <td align="center">${actor.role.name}</td>
 		                                <td align="center">
-		                                    <@dwz.a href="/system/actor-edit?actorId=${actor.id}" target="dialog" title="编辑职务">编辑</@dwz.a>
+		                                    <@dwz.a href="/system/actor-edit?actor=${actor.id}" target="dialog" title="编辑职务">编辑</@dwz.a>
 		                                    <#if !actor.isDefaultActor()>
-			                                    |&nbsp;<@dwz.a href="/system/actor-delete?actorId=${actor.id}" target="ajaxTodo" callback="dialogReloadDone" title="您确定要删除该职务吗？">删除</@dwz.a>
+			                                    |&nbsp;<@dwz.a href="/system/actor-delete?actor=${actor.id}" target="ajaxTodo" callback="dialogReloadDone" title="您确定要删除该职务吗？">删除</@dwz.a>
 		                                    </#if>
 		                                </td>
 		                            </tr>
