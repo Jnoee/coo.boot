@@ -79,6 +79,7 @@
 		</replace>
 		<replaceregexp file="${destDir}/${destArtifactId}.site/src/app-context.xml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.site/src/log4j.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
+		<replaceregexp file="${destDir}/${destArtifactId}.site/src/ehcache.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 	</target>
 
 	<target name="modify.config" description="修改配置文件">
