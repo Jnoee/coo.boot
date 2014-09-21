@@ -1,5 +1,6 @@
 package coo.boot.demo.model;
 
+
 /**
  * 公司扩展信息。
  */
