@@ -38,7 +38,7 @@ public class Employee extends ResourceEntity<User> {
 	/** 关联部门 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "companyId")
-	@IndexedEmbedded(depth = 1)
+	@IndexedEmbedded(includePaths = "name")
 	@JsonBackReference
 	private Company company;
 	/** 姓名 */
