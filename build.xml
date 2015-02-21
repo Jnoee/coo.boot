@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="NewProject" default="all" basedir=".">
-	<property name="origGroupId" value="jnoee" />
+	<property name="origGroupId" value="com.github.jnoee" />
 	<property name="origArtifactId" value="coo.boot" />
 
 	<target name="all" depends="init,copy.project,modify.pom,modify.package,modify.config,destroy" description="构建新项目" />
