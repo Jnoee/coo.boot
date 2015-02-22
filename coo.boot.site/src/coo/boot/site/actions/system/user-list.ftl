@@ -11,12 +11,13 @@
         <table class="table" width="100%" layoutH="112">
             <thead>
                 <tr>
-                    <th align="center">用户名</th>
-                    <th width="150px" align="center">姓名</th>
+                    <th>用户名</th>
+                    <th width="150px">姓名</th>
+                    <th width="200px">默认职务</th>
 					<th width="150px" align="center">创建时间</th>
-					<th width="80px" align="center">创建人</th>
+					<th width="80px">创建人</th>
 					<th width="150px" align="center">修改时间</th>
-					<th width="80px" align="center">修改人</th>
+					<th width="80px">修改人</th>
                     <th width="80px" align="center">启用状态</th>
                     <th width="200px" align="center">操作</th>
                 </tr>
@@ -26,6 +27,7 @@
                 <tr target="sid_user" rel="1">
                     <td>${user.username}</td>
                     <td>${user.name}</td>
+                    <td>${user.settings.defaultActor.fullName}</td>
 					<td>${user.createDate}</td>
 					<td>${user.creator.name}</td>
 					<td>${user.modifyDate}</td>

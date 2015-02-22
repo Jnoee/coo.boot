@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th width="140px" align="center">操作时间</th>
-                    <th width="100px" align="center">操作用户</th>
-                    <th align="center">操作内容</th>
+                    <th width="100px">操作用户</th>
+                    <th>操作内容</th>
                     <th width="140px" align="center">详细日志</th>
                 </tr>
             </thead>
@@ -17,7 +17,7 @@
 	                <tr target="sid_user" rel="1">
 	                    <td>${log.createDate}</td>
 	                    <td>${log.creator}</td>
-	                    <td style="text-align:left">${log.message}</td>
+	                    <td>${log.message}</td>
 	                    <td>
 	                    	<#if log.hasData()>
 	                    		<@dwz.a href="/system/log-view?log=${log.id}" target="dialog" title="查看详细日志">查看</@dwz.a>
