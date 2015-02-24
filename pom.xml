@@ -30,7 +30,7 @@
 		<plugin.war.version>2.4</plugin.war.version>
 		<plugin.source.version>2.2.1</plugin.source.version>
 		<plugin.javadoc.version>2.9.1</plugin.javadoc.version>
-		<plugin.release.version>2.5</plugin.release.version>
+		<plugin.release.version>2.3</plugin.release.version>
 		<plugin.gpg.version>1.6</plugin.gpg.version>
 		<jgit.version>1.9.1</jgit.version>
 		<project.scm.id>github</project.scm.id>
