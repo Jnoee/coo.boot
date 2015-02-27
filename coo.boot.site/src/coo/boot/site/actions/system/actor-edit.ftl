@@ -2,6 +2,7 @@
     <div class="pageContent">
         <@dwz.form action="/system/actor-update" targetType="dialogReload">
 	        <@s.hidden path="actor.id" />
+	        <@s.hidden path="actor.user" />
 	        <div class="pageFormContent" layoutH="60">
 	        	<dl>
 	                <dt>关联机构：</dt>

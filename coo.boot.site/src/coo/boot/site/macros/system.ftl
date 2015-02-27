@@ -1,5 +1,5 @@
 <#macro organTree organ>
-	<ul class="tree">
+	<ul class="tree" layoutH="36">
 		<@organTreeNode organ=organ />
 	</ul>
 </#macro>

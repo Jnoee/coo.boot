@@ -6,7 +6,7 @@
 	        	<#if organ.parent??>
 	            <dl class="nowrap">
 	                <dt>上级机构：</dt>
-	                <dd><@s.select path="organ.parent" items=parentOrgans  itemValue="id" itemLabel="selectText" class="combox" /></dd>
+	                <dd><@s.select path="organ.parent" items=parentOrgans  itemValue="id" itemLabel="selectText" id="organ-eidt" class="combox" /></dd>
 	            </dl>
 				<div class="divider" />
 				</#if>
@@ -19,11 +19,7 @@
 	                <dd><@s.input path="organ.ordinal" min="0" max="99999" class="digits" /></dd>
 	            </dl>
 	        </div>
-	        <@dwz.formBar showCancelBtn=false>
-	       		<li>
-	               	<@dwz.a class="button" href="/system/organ-add?organId=${organ.id}" target="dialog"><span>新增子机构</span></@dwz.a>
-				</li>
-	        </@dwz.formBar>
+	        <@dwz.formBar showCancelBtn=false />
         </@dwz.form>
     </div>
 </div>
