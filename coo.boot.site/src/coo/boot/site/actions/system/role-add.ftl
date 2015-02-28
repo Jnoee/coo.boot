@@ -7,7 +7,7 @@
 					<dd><@s.input path="role.name" maxlength="60" class="required" /></dd>
 				</dl>
 				<div class="divider" />
-	            <@system.permissions permissionGroups />
+	            <@sys.permissions permissionGroups />
 	        </div>
 	        <@dwz.formBar />
         </@dwz.form>
