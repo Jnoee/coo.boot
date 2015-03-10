@@ -16,6 +16,6 @@ public class FreeMarkerSettings extends AbstractFreeMarkerSettings {
 		setOrder(100);
 		addTemplatePath("classpath:/coo/boot/site/actions/");
 		addTemplatePath("classpath:/coo/boot/site/macros/");
-		addAutoImport("system", "system.ftl");
+		addAutoImport("sys", "sys.ftl");
 	}
 }
