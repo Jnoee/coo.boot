@@ -3,8 +3,30 @@
     	<div class="panelBar">
             <ul class="toolBar">
                 <li>
-                    <@dwz.a href="/system/cached-entity-evict" target="selectedTodo" rel="cachedEntityClasses" title="您确定要清理这些实体缓存吗？">
+                    <@dwz.a href="/system/cached-entity-evict" target="selectedTodo" rel="cachedEntityClasses" title="您确定要清理选中的实体缓存吗？">
 						<span class="a34">清理实体缓存</span>
+					</@dwz.a>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <@dwz.a href="/system/entity-regions-evict" target="ajaxTodo" title="您确定要清理所有实体缓存吗？">
+						<span class="a13">清理所有实体缓存</span>
+					</@dwz.a>
+                </li>
+                <li>
+                    <@dwz.a href="/system/collection-regions-evict" target="ajaxTodo" title="您确定要清理所有集合缓存吗？">
+						<span class="a18">清理所有集合缓存</span>
+					</@dwz.a>
+                </li>
+                <li>
+                    <@dwz.a href="/system/query-regions-evict" target="ajaxTodo" title="您确定要清理所有查询缓存吗？">
+						<span class="a02">清理所有查询缓存</span>
+					</@dwz.a>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <@dwz.a href="/system/all-regions-evict" target="ajaxTodo" title="您确定要清理所有缓存吗？">
+						<span class="a25">清理所有缓存</span>
 					</@dwz.a>
                 </li>
             </ul>

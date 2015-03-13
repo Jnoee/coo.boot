@@ -79,4 +79,52 @@ public class RepairedAction {
 		return NavTabResultUtils.reload(messageSource
 				.get("cached.entity.evict.success"));
 	}
+	
+	/**
+	 * 清空所有实体缓存。
+	 * 
+	 * @return 返回操作成功信息。
+	 */
+	@RequestMapping("entity-regions-evict")
+	public ModelAndView evictEntityRegions() {
+		entityCacheManager.evictEntityRegions();
+		return NavTabResultUtils.reload(messageSource
+				.get("entity.regions.evict.success"));
+	}
+
+	/**
+	 * 清空所有集合缓存。
+	 * 
+	 * @return 返回操作成功信息。
+	 */
+	@RequestMapping("collection-regions-evict")
+	public ModelAndView evictCollectionRegions() {
+		entityCacheManager.evictCollectionRegions();
+		return NavTabResultUtils.reload(messageSource
+				.get("collection.regions.evict.success"));
+	}
+
+	/**
+	 * 清空所有查询缓存。
+	 * 
+	 * @return 返回操作成功信息。
+	 */
+	@RequestMapping("query-regions-evict")
+	public ModelAndView evictQueryRegions() {
+		entityCacheManager.evictQueryRegions();
+		return NavTabResultUtils.reload(messageSource
+				.get("query.regions.evict.success"));
+	}
+
+	/**
+	 * 清空所有缓存。
+	 * 
+	 * @return 返回操作成功信息。
+	 */
+	@RequestMapping("all-regions-evict")
+	public ModelAndView evictAllRegions() {
+		entityCacheManager.evictAllRegions();
+		return NavTabResultUtils.reload(messageSource
+				.get("all.regions.evict.success"));
+	}
 }
