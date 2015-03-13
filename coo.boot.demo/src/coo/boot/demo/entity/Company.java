@@ -13,10 +13,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -33,6 +36,8 @@ import coo.core.security.annotations.LogField;
  */
 @Entity
 @Table(name = "Tmp_Company")
+@Indexed(index = "Company")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @XStreamAlias("company")
 public class Company extends UuidEntity {
 	/** 名称 */

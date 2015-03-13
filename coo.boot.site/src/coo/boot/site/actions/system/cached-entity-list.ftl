@@ -3,8 +3,8 @@
     	<div class="panelBar">
             <ul class="toolBar">
                 <li>
-                    <@dwz.a href="/system/full-text-index-build" target="selectedTodo" rel="entityClasses" title="您确定要重建这些全文索引吗？">
-						<span class="a34">重建全文索引</span>
+                    <@dwz.a href="/system/cached-entity-evict" target="selectedTodo" rel="cachedEntityClasses" title="您确定要清理这些实体缓存吗？">
+						<span class="a34">清理实体缓存</span>
 					</@dwz.a>
                 </li>
             </ul>
@@ -13,18 +13,18 @@
             <thead>
                 <tr>
                     <th width="80" align="center">
-                        <@s.checkbox class="checkboxCtrl" group="entityClasses" value="true" />
+                        <@s.checkbox class="checkboxCtrl" group="cachedEntityClasses" value="true" />
                     </th>
                     <th>实体类名</th>
                 </tr>
             </thead>
             <tbody>
-                <#list indexedEntityClasses as indexedEntityClass>
+                <#list cachedEntityClasses as cachedEntityClass>
 	                <tr>
 	                    <td>
-	                        <@s.checkbox name="entityClasses" value=indexedEntityClass.name />
+	                        <@s.checkbox name="cachedEntityClasses" value=cachedEntityClass.name />
 	                    </td>
-	                    <td>${indexedEntityClass.name}</td>
+	                    <td>${cachedEntityClass.name}</td>
 	                </tr>
                 </#list>
             </tbody>

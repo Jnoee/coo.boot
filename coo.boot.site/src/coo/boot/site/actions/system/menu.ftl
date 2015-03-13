@@ -16,7 +16,8 @@
         		<a>系统维护</a>
 	        	<ul>
 		            <li><@dwz.a href="/system/log-list">日志管理</@dwz.a></li>
-		            <li><@dwz.a href="/system/entity-list">全文索引</@dwz.a></li>
+		            <li><@dwz.a href="/system/indexed-entity-list">全文索引</@dwz.a></li>
+		            <li><@dwz.a href="/system/cached-entity-list">实体缓存</@dwz.a></li>
 	            </ul>
             </li>
         </ul>

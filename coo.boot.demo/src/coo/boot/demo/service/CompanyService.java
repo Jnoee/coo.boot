@@ -1,14 +1,18 @@
 package coo.boot.demo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.lucene.search.SortField;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import coo.base.util.BeanUtils;
+import coo.base.util.DateUtils;
 import coo.boot.demo.entity.Company;
+import coo.boot.demo.model.CompanyExtendInfo;
 import coo.core.hibernate.dao.Dao;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.DetailLog;
@@ -32,7 +36,7 @@ public class CompanyService {
 	 */
 	@Transactional(readOnly = true)
 	public List<Company> getAllCompany() {
-		return companyDao.getAll("name", true);
+		return companyDao.searchAll("name", true, SortField.Type.STRING);
 	}
 
 	/**
@@ -88,5 +92,20 @@ public class CompanyService {
 	@SimpleLog(entityId = "company.id", code = "company.delete.success")
 	public void deleteCompany(Company company) {
 		companyDao.remove(company);
+	}
+
+	/**
+	 * 自动创建公司，用于定时任务。
+	 */
+	@Transactional
+	public Company autoCreateCompany() {
+		Company company = new Company();
+		company.setName("c" + DateUtils.format(new Date(), DateUtils.SECOND_N));
+		company.setFoundDate(new Date());
+		CompanyExtendInfo extendInfo = new CompanyExtendInfo();
+		extendInfo.setTel("12345678");
+		company.setExtendInfo(extendInfo);
+		createCompany(company);
+		return company;
 	}
 }

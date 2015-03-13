@@ -15,5 +15,6 @@
 	<entry key="actor.edit.success">编辑职务成功。</entry>
 	<entry key="actor.delete.success">删除职务成功。</entry>
 	<entry key="person.pwd.change.success">修改密码成功。</entry>
-	<entry key="full.text.index.build.success">重建全文索引成功。</entry>
+	<entry key="indexed.entity.build.success">重建全文索引成功。</entry>
+	<entry key="cached.entity.evict.success">清理实体缓存成功。</entry>
 </properties>

@@ -1,10 +1,12 @@
 package coo.boot.demo.model;
 
+import java.io.Serializable;
 
 /**
  * 公司扩展信息。
  */
-public class CompanyExtendInfo {
+public class CompanyExtendInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
 	/** 地址 */
 	private String address;
 	/** 电话 */

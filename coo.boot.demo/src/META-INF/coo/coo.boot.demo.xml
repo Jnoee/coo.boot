@@ -9,22 +9,5 @@
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
-	<bean id="testJob"
-		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="testTask" />
-		<property name="targetMethod" value="say" />
-	</bean>
-	<bean id="testTrigger"
-		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="testJob" />
-		<property name="cronExpression" value="0/10 * * * * ?" />
-	</bean>
-	<bean id="mySchedulerFactoryBean"
-		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="triggers">
-			<list>
-				<ref bean="testTrigger" />
-			</list>
-		</property>
-	</bean>
+	
 </beans>

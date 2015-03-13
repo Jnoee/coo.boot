@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
@@ -31,7 +33,8 @@ import coo.core.security.entity.ResourceEntity;
  */
 @Entity
 @Table(name = "Tmp_Employee")
-@Indexed
+@Indexed(index = "Employee")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @XStreamAlias("employee")
 @JsonIgnoreProperties({ "creator", "modifier" })
 public class Employee extends ResourceEntity<User> {
