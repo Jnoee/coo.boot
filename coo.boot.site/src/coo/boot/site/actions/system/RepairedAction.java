@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import coo.core.hibernate.cache.EntityCacheManager;
-import coo.core.hibernate.search.FullTextIndexer;
+import coo.core.hibernate.search.EntityIndexManager;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
@@ -22,7 +22,7 @@ import coo.mvc.util.NavTabResultUtils;
 @Auth(AdminPermission.CODE)
 public class RepairedAction {
 	@Resource
-	private FullTextIndexer fullTextIndexer;
+	private EntityIndexManager entityIndexManager;
 	@Resource
 	private EntityCacheManager entityCacheManager;
 	@Resource
@@ -37,7 +37,7 @@ public class RepairedAction {
 	@RequestMapping("indexed-entity-list")
 	public void listIndexedEntity(Model model) {
 		model.addAttribute("indexedEntityClasses",
-				fullTextIndexer.getIndexedEntityClasses());
+				entityIndexManager.getIndexedEntityClasses());
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class RepairedAction {
 	 */
 	@RequestMapping("indexed-entity-build")
 	public ModelAndView buildIndexedEntity(Class<?>[] indexedEntityClasses) {
-		fullTextIndexer.startAndWait(indexedEntityClasses);
+		entityIndexManager.startAndWait(indexedEntityClasses);
 		return NavTabResultUtils.reload(messageSource
 				.get("indexed.entity.build.success"));
 	}
@@ -74,7 +74,7 @@ public class RepairedAction {
 	 * @return 返回操作成功信息。
 	 */
 	@RequestMapping("cached-entity-evict")
-	public ModelAndView evictIndexedEntity(Class<?>[] cachedEntityClasses) {
+	public ModelAndView evictCachedEntity(Class<?>[] cachedEntityClasses) {
 		entityCacheManager.evictEntityRegion(cachedEntityClasses);
 		return NavTabResultUtils.reload(messageSource
 				.get("cached.entity.evict.success"));
