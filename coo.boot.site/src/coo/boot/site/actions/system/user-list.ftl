@@ -14,12 +14,12 @@
                     <th>用户名</th>
                     <th width="150px">姓名</th>
                     <th width="200px">默认职务</th>
-					<th width="150px" align="center">创建时间</th>
+					<th width="150px">创建时间</th>
 					<th width="80px">创建人</th>
-					<th width="150px" align="center">修改时间</th>
+					<th width="150px">修改时间</th>
 					<th width="80px">修改人</th>
-                    <th width="80px" align="center">启用状态</th>
-                    <th width="200px" align="center">操作</th>
+                    <th width="80px" align="center">状态</th>
+                    <th width="180px">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,19 +28,20 @@
                     <td>${user.username}</td>
                     <td>${user.name}</td>
                     <td>${user.settings.defaultActor.fullName}</td>
-					<td>${user.createDate}</td>
+					<td>${user.createDate?datetime}</td>
 					<td>${user.creator.name}</td>
-					<td>${user.modifyDate}</td>
+					<td>${user.modifyDate?datetime}</td>
 					<td>${user.modifier.name}</td>
                     <td class="${user.enabled?string(StatusColor.GREEN, StatusColor.GRAY)}">${user.enabled?string("启用","停用")}</td>
                     <td>
-                        <@dwz.a href="/system/user-edit?user=${user.id}" target="dialog" title="编辑用户">编辑</@dwz.a>
+                        <@dwz.a href="/system/user-edit?user=${user.id}" target="dialog" height="SS" title="编辑用户">编辑</@dwz.a>
                         <#if user.enabled>
                             <@dwz.a href="/system/user-disable?user=${user.id}" target="ajaxTodo" title="您确定要停用该用户吗？">停用</@dwz.a>
                         <#else>
                             <@dwz.a href="/system/user-enable?user=${user.id}" target="ajaxTodo" title="您确定要启用该用户吗？">启用</@dwz.a>
                         </#if>
                         <@dwz.a href="/system/user-pwd-reset?user=${user.id}" target="dialog" width="SS" height="SSS">重置密码</@dwz.a>
+                        <@dwz.a href="/system/actor-list?user=${user.id}" target="dialog" width="S" height="SS">职务管理</@dwz.a>
                     </td>
                 </tr>
                 </#list>

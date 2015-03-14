@@ -34,7 +34,7 @@
 <#macro log_view log>
 	<dl>
 		<dt>操作时间：</dt>
-		<dd>${log.createDate}</dd>
+		<dd>${log.createDate?datetime}</dd>
 	</dl>
 	<dl>
 		<dt>操作用户：</dt>

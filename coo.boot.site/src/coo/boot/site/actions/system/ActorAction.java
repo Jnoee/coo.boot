@@ -28,6 +28,19 @@ public class ActorAction {
 	private MessageSource messageSource;
 
 	/**
+	 * 查看职务列表。
+	 * 
+	 * @param model
+	 *            数据模型
+	 * @param user
+	 *            关联用户
+	 */
+	@RequestMapping("actor-list")
+	public void list(Model model, User user) {
+		model.addAttribute(user);
+	}
+
+	/**
 	 * 新增职务。
 	 * 
 	 * @param model
@@ -55,7 +68,7 @@ public class ActorAction {
 	public ModelAndView save(Actor actor) {
 		securityService.createActor(actor);
 		return DialogResultUtils.closeAndReloadDialog(
-				messageSource.get("actor.add.success"), "user-edit");
+				messageSource.get("actor.add.success"), "actor-list");
 	}
 
 	/**
@@ -84,7 +97,7 @@ public class ActorAction {
 	public ModelAndView update(Actor actor) {
 		securityService.updateActor(actor);
 		return DialogResultUtils.closeAndReloadDialog(
-				messageSource.get("actor.edit.success"), "user-edit");
+				messageSource.get("actor.edit.success"), "actor-list");
 	}
 
 	/**
