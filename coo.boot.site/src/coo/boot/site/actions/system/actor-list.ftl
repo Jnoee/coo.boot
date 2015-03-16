@@ -3,7 +3,7 @@
     <div class="pageContent">
         <div class="panelBar">
             <ul class="toolBar">
-                <li><@dwz.a href="/system/actor-add?user=${user.id}" target="dialog"><span class="a09">新增职务</span></@dwz.a></li>
+                <li><@dwz.a href="/system/actor-add?user=${user.id}" target="dialog" width="S" height="SS"><span class="a09">新增职务</span></@dwz.a></li>
             </ul>
         </div>
         <table class="table" width="100%" layoutH="50">
