@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.jnoee</groupId>
 	<artifactId>coo.boot</artifactId>
-	<version>2.1.7-SNAPSHOT</version>
+	<version>2.1.8-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<name>coo.boot</name>
@@ -39,7 +39,7 @@
 		<slf4j.version>1.7.5</slf4j.version>
 		<junit.version>4.11</junit.version>
 		<servlet.version>2.5</servlet.version>
-		<coo.version>2.1.7</coo.version>
+		<coo.version>2.1.8-SNAPSHOT</coo.version>
 	</properties>
 	<dependencies>
 		<dependency>
