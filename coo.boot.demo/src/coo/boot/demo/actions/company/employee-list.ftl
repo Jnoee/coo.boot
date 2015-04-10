@@ -11,12 +11,12 @@
         <table class="table" width="100%" layoutH="112">
             <thead>
                 <tr>
-                    <th width="150px" align="center">姓名</th>
-					<th width="200px" align="center">所属公司</th>
-                    <th width="100px" align="center">年龄</th>
-					<th width="100px" align="center">性别</th>
-					<th align="center">兴趣爱好</th>
-                    <th width="150px" align="center">操作</th>
+                    <th width="100">姓名</th>
+					<th width="150">所属公司</th>
+                    <th width="60" align="center">年龄</th>
+					<th width="60" align="center">性别</th>
+					<th>兴趣爱好</th>
+                    <th width="80">操作</th>
                 </tr>
             </thead>
             <tbody>

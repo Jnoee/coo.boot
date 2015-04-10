@@ -9,13 +9,13 @@
         <table class="table" width="100%" layoutH="75">
             <thead>
                 <tr>
-                    <th width="150px" align="center">名称</th>
-                    <th width="120px" align="center">成立时间</th>
-                    <th align="center">地址</th>
-					<th width="120px" align="center">电话</th>
-					<th width="120px" align="center">传真</th>
-					<th width="80px" align="center">状态</th>
-                    <th width="150px" align="center">操作</th>
+                    <th width="120">名称</th>
+                    <th width="100" align="center">成立时间</th>
+                    <th>地址</th>
+					<th width="120" align="center">电话</th>
+					<th width="120" align="center">传真</th>
+					<th width="60" align="center">状态</th>
+                    <th width="150">操作</th>
                 </tr>
             </thead>
             <tbody>
