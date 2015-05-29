@@ -10,5 +10,6 @@
 	<entry key="db.initialSize">10</entry>
 	<entry key="db.dialect">org.hibernate.dialect.H2Dialect</entry>
 	<entry key="db.show_sql">true</entry>
+	<entry key="db.filters">stat,slf4j</entry>
 	<entry key="hibernate.search.default.indexBase">${user.home}/.coo.boot/indexed</entry>
 </properties>
