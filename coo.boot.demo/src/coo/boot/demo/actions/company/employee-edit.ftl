@@ -2,7 +2,7 @@
     <div class="pageContent">
         <@dwz.form action="/company/employee-update">
 	        <@s.hidden path="employee.id" />
-	        <div class="pageFormContent" layoutH="60">
+	        <div class="pageFormContent s-cols" layoutH="60">
 	            <dl>
 	                <dt>姓名：</dt>
 	                <dd><@s.input path="employee.name" maxlength="60" class="required" /></dd>
@@ -27,7 +27,7 @@
 	            <dl>
 	                <dt>兴趣爱好：</dt>
 	                <dd>
-	                    <@s.checkboxs path="employee.interests" items=Interest?values itemValue="text" itemLabel="text" />
+	                    <@dwz.checkboxs path="employee.interests" items=Interest?values itemValue="text" itemLabel="text" required=false />
 	                </dd>
 	            </dl>
 	        </div>

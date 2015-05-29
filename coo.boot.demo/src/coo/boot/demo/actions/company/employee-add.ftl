@@ -26,7 +26,7 @@
 				<dl class="nowrap">
 	                <dt>兴趣爱好：</dt>
 	                <dd>
-	                    <@s.checkboxs path="employee.interests" items=Interest?values itemValue="text" itemLabel="text" prefix="<span class='dd-span'>" suffix="</span>" class="required" />
+	                    <@dwz.checkboxs path="employee.interests" items=Interest?values itemValue="text" itemLabel="text" required=false />
 	                </dd>
 	            </dl>
 	        </div>
