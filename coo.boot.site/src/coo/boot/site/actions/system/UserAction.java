@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import coo.boot.core.entity.Actor;
 import coo.boot.core.entity.User;
+import coo.boot.core.entity.UserSettings;
 import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.model.SearchModel;
@@ -91,6 +92,7 @@ public class UserAction {
 	 */
 	@RequestMapping("user-save")
 	public ModelAndView save(User user, Actor actor) {
+		user.setSettings(new UserSettings());
 		user.getSettings().setDefaultActor(actor);
 		securityService.createUser(user);
 		return DialogResultUtils.closeAndReloadNavTab(messageSource

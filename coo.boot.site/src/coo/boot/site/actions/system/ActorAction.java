@@ -113,4 +113,18 @@ public class ActorAction {
 		return DialogResultUtils.reload(messageSource
 				.get("actor.delete.success"));
 	}
+
+	/**
+	 * 设置默认职务。
+	 * 
+	 * @param actor
+	 *            职务
+	 * @return 返回提示信息。
+	 */
+	@RequestMapping("actor-set-default")
+	public ModelAndView setDefault(Actor actor) {
+		securityService.setDefaultActor(actor);
+		return DialogResultUtils.reload(messageSource
+				.get("actor.set.default.success"));
+	}
 }

@@ -56,6 +56,7 @@ create table Syst_Organ  (
    id                   CHAR(36)                        not null,
    parentId             CHAR(36),
    name                 VARCHAR(60)                     not null,
+   enabled              VARCHAR(3)                     	not null,
    ordinal              INTEGER,
    creatorId            CHAR(36)                        not null,
    createDate           DATETIME                        not null,
@@ -197,8 +198,8 @@ alter table Tmp_Employee
       on delete cascade;
       
 /** 创建系统根机构 */
-insert into Syst_Organ (id, parentId, name, creatorId, createDate, modifierId, modifyDate)
-values ('ADMINOID-0000-0000-0000-000000000000', null, '系统根机构', 'ADMINUID-0000-0000-0000-000000000000', NOW(), 'ADMINUID-0000-0000-0000-000000000000', NOW());
+insert into Syst_Organ (id, parentId, name, enabled, creatorId, createDate, modifierId, modifyDate)
+values ('ADMINOID-0000-0000-0000-000000000000', null, '系统根机构', '1', 'ADMINUID-0000-0000-0000-000000000000', NOW(), 'ADMINUID-0000-0000-0000-000000000000', NOW());
 /** 创建系统管理员用户 */
 insert into Syst_User (id, username, password, name, enabled, creatorId, createDate, modifierId, modifyDate)
 values ('ADMINUID-0000-0000-0000-000000000000', 'admin', 'j6Xdj208bRekjd8a9acwQJL5IbHiws3ncNkgO6Gh9HY=', '系统管理员', 1, 'ADMINUID-0000-0000-0000-000000000000', NOW(), 'ADMINUID-0000-0000-0000-000000000000', NOW());

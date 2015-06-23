@@ -39,7 +39,7 @@ public class OrganAction {
 	 */
 	@RequestMapping("organ-list")
 	public void list(Model model, String selectedOrganId) {
-		Organ rootOrgan = securityService.getCurrentOrgan();
+		Organ rootOrgan = securityService.getRootOrgan();
 		if (selectedOrganId == null) {
 			selectedOrganId = rootOrgan.getId();
 		}
@@ -55,7 +55,7 @@ public class OrganAction {
 	 */
 	@RequestMapping("organ-add")
 	public void add(Model model) {
-		Organ rootOrgan = securityService.getCurrentOrgan();
+		Organ rootOrgan = securityService.getRootOrgan();
 		Organ organ = new Organ();
 		organ.setParent(rootOrgan);
 		model.addAttribute("parentOrgans", rootOrgan.getOrganTree());
@@ -88,7 +88,7 @@ public class OrganAction {
 	 */
 	@RequestMapping("organ-edit")
 	public void edit(Model model, Organ organ) {
-		Organ rootOrgan = securityService.getCurrentOrgan();
+		Organ rootOrgan = securityService.getRootOrgan();
 		model.addAttribute("rootOrgan", rootOrgan);
 		List<Organ> parentOrgans = rootOrgan.getOrganTree();
 		parentOrgans.remove(organ);
@@ -122,7 +122,37 @@ public class OrganAction {
 		securityService.deleteOrgan(organ);
 		return NavTabResultUtils.forward(
 				messageSource.get("organ.delete.success"),
-				"organ-list?selectedOrganId="
+				"/system/organ-list?selectedOrganId="
 						+ securityService.getCurrentOrgan().getId());
+	}
+
+	/**
+	 * 启用机构。
+	 * 
+	 * @param organ
+	 *            机构
+	 * @return 返回提示信息。
+	 */
+	@RequestMapping("organ-enable")
+	public ModelAndView enable(Organ organ) {
+		securityService.enableOrgan(organ);
+		return NavTabResultUtils.forward(
+				messageSource.get("organ.enable.success"),
+				"/system/organ-list?selectedOrganId=" + organ.getId());
+	}
+
+	/**
+	 * 停用机构。
+	 * 
+	 * @param organ
+	 *            机构
+	 * @return 返回提示信息。
+	 */
+	@RequestMapping("organ-disable")
+	public ModelAndView disable(Organ organ) {
+		securityService.disableOrgan(organ);
+		return NavTabResultUtils.forward(
+				messageSource.get("organ.disable.success"),
+				"/system/organ-list?selectedOrganId=" + organ.getId());
 	}
 }

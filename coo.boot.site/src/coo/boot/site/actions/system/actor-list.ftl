@@ -10,9 +10,9 @@
             <thead>
                 <tr>
                     <th>职务名称</th>
-                    <th width="120">关联机构</th>
-                    <th width="120">关联角色</th>
-                    <th width="80">操作</th>
+                    <th width="100">关联机构</th>
+                    <th width="100">关联角色</th>
+                    <th width="160">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +25,7 @@
                          <@dwz.a href="/system/actor-edit?actor=${actor.id}" target="dialog" width="S" height="SS" title="编辑职务">编辑</@dwz.a>
                          <#if !actor.isDefaultActor()>
                          	<@dwz.a href="/system/actor-delete?actor=${actor.id}" target="ajaxTodo" callback="dialogReloadDone" title="您确定要删除该职务吗？">删除</@dwz.a>
+                         	<@dwz.a href="/system/actor-set-default?actor=${actor.id}" target="ajaxTodo" callback="dialogReloadDone" title="您确定要设置该职务为默认职务吗？">设置默认职务</@dwz.a>
                          </#if>
                      </td>
                  </tr>
