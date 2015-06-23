@@ -32,10 +32,10 @@
 					<td>${user.creator.name}</td>
 					<td>${user.modifyDate?datetime}</td>
 					<td>${user.modifier.name}</td>
-                    <td class="${user.enabled?string(StatusColor.GREEN, StatusColor.GRAY)}">${user.enabled?string("启用","停用")}</td>
+                    <td class="${user.enabled.color}">${user.enabled}</td>
                     <td>
                         <@dwz.a href="/system/user-edit?user=${user.id}" target="dialog" height="SS" title="编辑用户">编辑</@dwz.a>
-                        <#if user.enabled>
+                        <#if user.enabled == EnabeldStatus.ENABLED>
                             <@dwz.a href="/system/user-disable?user=${user.id}" target="ajaxTodo" title="您确定要停用该用户吗？">停用</@dwz.a>
                         <#else>
                             <@dwz.a href="/system/user-enable?user=${user.id}" target="ajaxTodo" title="您确定要启用该用户吗？">启用</@dwz.a>
