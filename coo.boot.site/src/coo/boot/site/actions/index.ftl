@@ -14,7 +14,7 @@
         <div id="layout">
             <div id="header">
                 <div class="headerNav">
-                    <a class="logo" href="javascript:;">标志</a>
+                    <a class="logo" href="javascript:;">LOGO</a>
                     <ul class="nav">
                         <li>
                             <a href="javascript:;">${currentUser.name}（${currentUser.settings.defaultActor.fullName}）</a>
