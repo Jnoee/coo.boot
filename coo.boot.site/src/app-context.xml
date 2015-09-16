@@ -20,7 +20,7 @@
 
 	<jdbc:initialize-database data-source="dataSource"
 		ignore-failures="ALL">
-		<jdbc:script location="classpath:h2.sql" />
+		<jdbc:script location="classpath:h2.sql" encoding="UTF-8" />
 	</jdbc:initialize-database>
 
 	<!-- 加载应用组件 -->
