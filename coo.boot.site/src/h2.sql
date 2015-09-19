@@ -1,4 +1,63 @@
 /*==============================================================*/
+/* DBMS name:      MySQL 5.0                                    */
+/* Created on:     2015-09-19 23:56:59                          */
+/*==============================================================*/
+
+
+/*==============================================================*/
+/* Table: Organ                                                 */
+/*==============================================================*/
+create table Organ
+(
+   id                   char(36) not null,
+   parentId             char(36),
+   name                 varchar(60) not null,
+   enabled              varchar(3) not null comment '0.停用 1.启用',
+   ordinal              int,
+   creatorId            char(36) not null,
+   createDate           datetime not null,
+   modifierId           char(36) not null,
+   modifyDate           datetime not null,
+   primary key (id),
+   constraint FK_Organ_parentId foreign key (parentId)
+      references Organ (id) on delete cascade on update restrict
+);
+
+/*==============================================================*/
+/* Table: User                                                  */
+/*==============================================================*/
+create table User
+(
+   id                   char(36) not null,
+   name                 varchar(20) not null,
+   username             varchar(20) not null,
+   password             varchar(120) not null,
+   enabled              varchar(3) not null comment '0.停用 1.启用',
+   ordinal              int,
+   defaultActorId       char(36),
+   creatorId            char(36) not null,
+   createDate           datetime not null,
+   modifierId           char(36) not null,
+   modifyDate           datetime not null,
+   primary key (id)
+);
+
+/*==============================================================*/
+/* Table: Role                                                  */
+/*==============================================================*/
+create table Role
+(
+   id                   char(36) not null,
+   name                 varchar(60) not null,
+   permissions          varchar(800) not null,
+   creatorId            char(36) not null,
+   createDate           datetime not null,
+   modifierId           char(36) not null,
+   modifyDate           datetime not null,
+   primary key (id)
+);
+
+/*==============================================================*/
 /* Table: Actor                                                 */
 /*==============================================================*/
 create table Actor
@@ -12,7 +71,13 @@ create table Actor
    createDate           datetime not null,
    modifierId           char(36) not null,
    modifyDate           datetime not null,
-   primary key (id)
+   primary key (id),
+   constraint FK_Actor_organId foreign key (organId)
+      references Organ (id) on delete cascade on update restrict,
+   constraint FK_Actor_userId foreign key (userId)
+      references User (id) on delete cascade on update restrict,
+   constraint FK_Actor_roleId foreign key (roleId)
+      references Role (id) on delete cascade on update restrict
 );
 
 /*==============================================================*/
@@ -43,8 +108,6 @@ create table Company
    primary key (id)
 );
 
-alter table Company comment '公司';
-
 /*==============================================================*/
 /* Table: Employee                                              */
 /*==============================================================*/
@@ -60,76 +123,12 @@ create table Employee
    createDate           datetime not null,
    modifierId           char(36) not null,
    modifyDate           datetime not null,
-   primary key (id)
+   primary key (id),
+   constraint FK_Employee_companyId foreign key (companyId)
+      references Company (id) on delete cascade on update restrict
 );
 
-alter table Employee comment '职员';
 
-/*==============================================================*/
-/* Table: Organ                                                 */
-/*==============================================================*/
-create table Organ
-(
-   id                   char(36) not null,
-   parentId             char(36),
-   name                 varchar(60) not null,
-   enabled              varchar(3) not null comment '0.停用 1.启用',
-   ordinal              int,
-   creatorId            char(36) not null,
-   createDate           datetime not null,
-   modifierId           char(36) not null,
-   modifyDate           datetime not null,
-   primary key (id)
-);
-
-/*==============================================================*/
-/* Table: Role                                                  */
-/*==============================================================*/
-create table Role
-(
-   id                   char(36) not null,
-   name                 varchar(60) not null,
-   permissions          varchar(800) not null,
-   creatorId            char(36) not null,
-   createDate           datetime not null,
-   modifierId           char(36) not null,
-   modifyDate           datetime not null,
-   primary key (id)
-);
-
-/*==============================================================*/
-/* Table: User                                                  */
-/*==============================================================*/
-create table User
-(
-   id                   char(36) not null,
-   name                 varchar(20) not null,
-   username             varchar(20) not null,
-   password             varchar(120) not null,
-   enabled              varchar(3) not null comment '0.停用 1.启用',
-   ordinal              int,
-   defaultActorId       char(36),
-   creatorId            char(36) not null,
-   createDate           datetime not null,
-   modifierId           char(36) not null,
-   modifyDate           datetime not null,
-   primary key (id)
-);
-
-alter table Actor add constraint FK_Actor_organId foreign key (organId)
-      references Organ (id) on delete cascade on update restrict;
-
-alter table Actor add constraint FK_Actor_roleId foreign key (roleId)
-      references Role (id) on delete cascade on update restrict;
-
-alter table Actor add constraint FK_Actor_userId foreign key (userId)
-      references User (id) on delete cascade on update restrict;
-
-alter table Employee add constraint FK_Employee_companyId foreign key (companyId)
-      references Company (id) on delete cascade on update restrict;
-
-alter table Organ add constraint FK_Organ_parentId foreign key (parentId)
-      references Organ (id) on delete cascade on update restrict;
       
 /** 创建系统根机构 */
 insert into Organ (id, parentId, name, enabled, creatorId, createDate, modifierId, modifyDate)
