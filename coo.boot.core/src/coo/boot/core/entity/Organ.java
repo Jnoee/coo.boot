@@ -12,7 +12,7 @@ import coo.core.security.entity.OrganEntity;
  * 机构。
  */
 @Entity
-@Table(name = "Syst_Organ")
+@Table(name = "Organ")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Organ extends OrganEntity<Organ, User, Actor> {
 

@@ -35,7 +35,7 @@ import coo.core.security.annotations.LogField;
  * 公司。
  */
 @Entity
-@Table(name = "Tmp_Company")
+@Table(name = "Company")
 @Indexed(index = "Company")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @XStreamAlias("company")

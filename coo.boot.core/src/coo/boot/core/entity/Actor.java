@@ -12,7 +12,7 @@ import coo.core.security.entity.ActorEntity;
  * 职务。
  */
 @Entity
-@Table(name = "Syst_Actor")
+@Table(name = "Actor")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Actor extends ActorEntity<Organ, User, Role> {
 

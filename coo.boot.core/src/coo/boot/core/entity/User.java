@@ -13,7 +13,7 @@ import coo.core.security.entity.UserEntity;
  * 用户。
  */
 @Entity
-@Table(name = "Syst_User")
+@Table(name = "User")
 @Indexed
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends UserEntity<User, Actor> {

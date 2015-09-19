@@ -12,7 +12,7 @@ import coo.core.security.entity.RoleEntity;
  * 角色。
  */
 @Entity
-@Table(name = "Syst_Role")
+@Table(name = "Role")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Role extends RoleEntity<User, Actor> {
 }

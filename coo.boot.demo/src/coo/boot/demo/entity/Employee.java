@@ -32,7 +32,7 @@ import coo.core.security.entity.ResourceEntity;
  * 职员。
  */
 @Entity
-@Table(name = "Tmp_Employee")
+@Table(name = "Employee")
 @Indexed(index = "Employee")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @XStreamAlias("employee")
