@@ -82,7 +82,7 @@ public class ActorAction {
 	@RequestMapping("actor-edit")
 	public void edit(Model model, Actor actor) {
 		model.addAttribute("rootOrgan", securityService.getCurrentUser()
-				.getSettings().getDefaultActor().getOrgan());
+				.getDefaultActor().getOrgan());
 		model.addAttribute("roles", securityService.getAllRole());
 	}
 

@@ -16,5 +16,5 @@ import coo.core.security.entity.UserEntity;
 @Table(name = "Syst_User")
 @Indexed
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class User extends UserEntity<User, Actor, UserSettings> {
+public class User extends UserEntity<User, Actor> {
 }

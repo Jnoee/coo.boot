@@ -17,7 +17,7 @@
                     <a class="logo" href="javascript:;">LOGO</a>
                     <ul class="nav">
                         <li>
-                            <a href="javascript:;">${currentUser.name}（${currentUser.settings.defaultActor.fullName}）</a>
+                            <a href="javascript:;">${currentUser.name}（${currentUser.defaultActor.fullName}）</a>
                         </li>
                         <li id="switchEnvBox">
                             <a href="javascript:;">切换职务</a>

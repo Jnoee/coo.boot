@@ -4,14 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import coo.boot.core.entity.Actor;
 import coo.boot.core.entity.User;
-import coo.boot.core.entity.UserSettings;
 import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.model.SearchModel;
@@ -31,28 +27,6 @@ public class UserAction {
 	private SecurityService securityService;
 	@Resource
 	private MessageSource messageSource;
-
-	/**
-	 * 绑定用户。
-	 * 
-	 * @param binder
-	 *            数据绑定对象
-	 */
-	@InitBinder("user")
-	public void initBinderUser(WebDataBinder binder) {
-		binder.setFieldDefaultPrefix("user.");
-	}
-
-	/**
-	 * 绑定职务。
-	 * 
-	 * @param binder
-	 *            数据绑定对象
-	 */
-	@InitBinder("actor")
-	public void initBinderActor(WebDataBinder binder) {
-		binder.setFieldDefaultPrefix("actor.");
-	}
 
 	/**
 	 * 查看用户列表。
@@ -76,7 +50,6 @@ public class UserAction {
 	@RequestMapping("user-add")
 	public void add(Model model) {
 		model.addAttribute("user", new User());
-		model.addAttribute("actor", new Actor());
 		model.addAttribute("rootOrgan", securityService.getCurrentOrgan());
 		model.addAttribute("roles", securityService.getAllRole());
 	}
@@ -86,14 +59,10 @@ public class UserAction {
 	 * 
 	 * @param user
 	 *            用户
-	 * @param actor
-	 *            职务
 	 * @return 返回提示信息。
 	 */
 	@RequestMapping("user-save")
-	public ModelAndView save(User user, Actor actor) {
-		user.setSettings(new UserSettings());
-		user.getSettings().setDefaultActor(actor);
+	public ModelAndView save(User user) {
 		securityService.createUser(user);
 		return DialogResultUtils.closeAndReloadNavTab(messageSource
 				.get("user.add.success"));

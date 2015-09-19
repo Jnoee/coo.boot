@@ -2,7 +2,6 @@
     <div class="pageContent">
     	<@dwz.form action="/system/user-update">
 	        <@s.hidden path="user.id" />
-	        <@s.hidden path="user.settings.id" />
 	    	<div class="pageFormContent" layoutH="58">
 				<dl>
 	                <dt>用户名：</dt>

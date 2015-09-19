@@ -27,7 +27,7 @@
                 <tr target="sid_user" rel="1">
                     <td>${user.username}</td>
                     <td>${user.name}</td>
-                    <td>${user.settings.defaultActor.fullName}</td>
+                    <td>${user.defaultActor.fullName}</td>
 					<td>${user.createDate?datetime}</td>
 					<td>${user.creator.name}</td>
 					<td>${user.modifyDate?datetime}</td>

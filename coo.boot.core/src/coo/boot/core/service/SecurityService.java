@@ -6,7 +6,6 @@ import coo.boot.core.entity.Actor;
 import coo.boot.core.entity.Organ;
 import coo.boot.core.entity.Role;
 import coo.boot.core.entity.User;
-import coo.boot.core.entity.UserSettings;
 import coo.core.security.service.AbstractSecurityService;
 
 /**
@@ -14,5 +13,5 @@ import coo.core.security.service.AbstractSecurityService;
  */
 @Service
 public class SecurityService extends
-		AbstractSecurityService<Organ, User, Role, Actor, UserSettings> {
+		AbstractSecurityService<Organ, User, Role, Actor> {
 }
