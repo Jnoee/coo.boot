@@ -7,8 +7,9 @@
         <@dwz.head />
         <link href="${ctx}/themes/default/style.css" rel="stylesheet" type="text/css" />
         <link href="${ctx}/themes/css/core.css" rel="stylesheet" type="text/css" />
+        <script src="${ctx}/js/jquery.format.js" type="text/javascript"></script>
         <script src="${ctx}/js/site.js" type="text/javascript"></script>
-        <title>coo.boot.site</title>
+        <title><@s.message "app.name" /></title>
     </head>
     <body scroll="no">
         <div id="layout">
@@ -46,6 +47,9 @@
                         <@sec.any name="ADMIN">
 	                        <li><@s.a href="/system/menu"><span>系统管理</span></@s.a></li>
                         </@sec.any>
+                        <@sec.any name="ADMIN">
+			                <li><@s.a href="/apitest/menu"><span>接口测试</span></@s.a></li>
+			            </@sec.any>
                     </ul>
                 </div>
             </div>
@@ -53,7 +57,7 @@
             <@dwz.container />
         </div>
         <div id="footer">
-            &copy; Jnoee
+            &copy; <@s.message "app.name" />
         </div>
         <script type="text/javascript">
             $(function() {

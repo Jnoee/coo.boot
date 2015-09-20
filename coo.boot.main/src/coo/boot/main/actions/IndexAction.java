@@ -1,4 +1,4 @@
-package coo.boot.site.actions;
+package coo.boot.main.actions;
 
 import javax.annotation.Resource;
 

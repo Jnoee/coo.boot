@@ -16,6 +16,10 @@
 	<import resource="classpath:META-INF/coo/coo.core.security.xml" />
 	<import resource="classpath:META-INF/coo/coo.mvc.security.xml" />
 	
+	<import resource="classpath:META-INF/coo/coo.boot.core.xml" />
+	<import resource="classpath:META-INF/coo/coo.boot.site.xml" />
+	<import resource="classpath:META-INF/coo/coo.boot.task.xml" />
+	<import resource="classpath:META-INF/coo/coo.boot.api.xml" />
 	<import resource="classpath:META-INF/coo/coo.boot.demo.xml" />
 
 	<jdbc:initialize-database data-source="dataSource"

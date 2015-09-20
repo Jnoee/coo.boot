@@ -208,6 +208,9 @@
 		<module>coo.boot.core</module>
 		<module>coo.boot.demo</module>
 		<module>coo.boot.site</module>
+		<module>coo.boot.api</module>
+		<module>coo.boot.task</module>
+		<module>coo.boot.main</module>
 	</modules>
 	<scm>
 		<url>https://github.com/jnoee/coo.boot</url>
