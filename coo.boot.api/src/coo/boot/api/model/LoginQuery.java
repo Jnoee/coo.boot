@@ -2,6 +2,9 @@ package coo.boot.api.model;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ * 登录请求。
+ */
 public class LoginQuery {
 	@NotBlank(message = "用户名不能为空")
 	private String username;
