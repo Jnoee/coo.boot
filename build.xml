@@ -2,7 +2,14 @@
 <project name="NewProject" default="all" basedir=".">
 	<property name="origGroupId" value="com.github.jnoee" />
 	<property name="origArtifactId" value="coo.boot" />
+	<property name="moduleNames" value="core,site,api,task,main" />
 
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+	
 	<target name="all" depends="init,copy.project,modify.pom,modify.package,modify.config,destroy" description="构建新项目" />
 
 	<target name="init">
@@ -47,46 +54,43 @@
 		<!-- 修改主项目pom.xml -->
 		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="s" />
 		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="s" />
-		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origArtifactId}.core" replace="${destArtifactId}.core" flags="s" />
-		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origArtifactId}.site" replace="${destArtifactId}.site" flags="s" />
-		<!-- 修改子模块pom.xml -->
-		<replaceregexp file="${destDir}/${origArtifactId}.core/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="g" />
-		<replaceregexp file="${destDir}/${origArtifactId}.core/pom.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
-		<replaceregexp file="${destDir}/${origArtifactId}.site/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="g" />
-		<replaceregexp file="${destDir}/${origArtifactId}.site/pom.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
+		<foreach list="${moduleNames}" target="modify.pom.each" param="moduleName" delimiter="," inheritall="yes" />
+	</target>
+	
+	<target name="modify.pom.each" description="修改pom.xml文件">
+		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origArtifactId}.${moduleName}" replace="${destArtifactId}.${moduleName}" flags="s" />
+		<replaceregexp file="${destDir}/${origArtifactId}.${moduleName}/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="g" />
+		<replaceregexp file="${destDir}/${origArtifactId}.${moduleName}/pom.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 	</target>
 
 	<target name="modify.package" description="修改项目包路径（目录）">
-		<move todir="${destDir}/${destArtifactId}.core">
-			<fileset dir="${destDir}/${origArtifactId}.core" />
-		</move>
-		<move todir="${destDir}/${destArtifactId}.core/src/${destPackagePath}">
-			<fileset dir="${destDir}/${destArtifactId}.core/src/${origPackagePath}" />
-		</move>
-		<move todir="${destDir}/${destArtifactId}.site">
-			<fileset dir="${destDir}/${origArtifactId}.site" />
-		</move>
-		<move todir="${destDir}/${destArtifactId}.site/src/${destPackagePath}">
-			<fileset dir="${destDir}/${destArtifactId}.site/src/${origPackagePath}" />
-		</move>
+		<foreach list="${moduleNames}" target="modify.package.each" param="moduleName" delimiter="," inheritall="yes" />
 		<replace dir="${destDir}" encoding="UTF-8" token="${origPackageName}" value="${destPackageName}">
 			<include name="**/*.java" />
 			<include name="**/*.ftl" />
 		</replace>
-		<replace dir="${destDir}" encoding="UTF-8" token="${origPackagePath}" value="${destPackagePath}">
-			<include name="**/*.java" />
-			<include name="**/*.ftl" />
-		</replace>
-		<replaceregexp file="${destDir}/${destArtifactId}.site/src/app-context.xml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
-		<replaceregexp file="${destDir}/${destArtifactId}.site/src/logback.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
-		<replaceregexp file="${destDir}/${destArtifactId}.site/src/ehcache.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
+		<replaceregexp file="${destDir}/${destArtifactId}.main/src/app-context.xml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
+		<replaceregexp file="${destDir}/${destArtifactId}.main/src/logback.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
+		<replaceregexp file="${destDir}/${destArtifactId}.main/src/ehcache.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
+	</target>
+	
+	<target name="modify.package.each" description="修改项目包路径（目录）">
+		<move todir="${destDir}/${destArtifactId}.${moduleName}">
+			<fileset dir="${destDir}/${origArtifactId}.${moduleName}" />
+		</move>
+		<move todir="${destDir}/${destArtifactId}.${moduleName}/src/${destPackagePath}">
+			<fileset dir="${destDir}/${destArtifactId}.${moduleName}/src/${origPackagePath}" />
+		</move>
 	</target>
 
 	<target name="modify.config" description="修改配置文件">
-		<move file="${destDir}/${destArtifactId}.core/src/META-INF/coo/${origPackageName}.core.messages.xml" tofile="${destDir}/${destArtifactId}.core/src/META-INF/coo/${destPackageName}.core.messages.xml" />
-		<move file="${destDir}/${destArtifactId}.core/src/META-INF/coo/${origPackageName}.core.permissions.xml" tofile="${destDir}/${destArtifactId}.core/src/META-INF/coo/${destPackageName}.core.permissions.xml" />
-		<move file="${destDir}/${destArtifactId}.site/src/META-INF/coo/${origPackageName}.site.messages.xml" tofile="${destDir}/${destArtifactId}.site/src/META-INF/coo/${destPackageName}.site.messages.xml" />
-		<move file="${destDir}/${destArtifactId}.site/src/META-INF/coo/${origPackageName}.site.permissions.xml" tofile="${destDir}/${destArtifactId}.site/src/META-INF/coo/${destPackageName}.site.permissions.xml" />
+		<foreach list="${moduleNames}" target="modify.config.each" param="moduleName" delimiter="," inheritall="yes" />
+	</target>
+	
+	<target name="modify.config.each" description="修改配置文件">
+		<move file="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${origArtifactId}.${moduleName}.xml" tofile="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${destArtifactId}.${moduleName}.xml" failonerror="no" />
+		<move file="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${origArtifactId}.${moduleName}.messages.xml" tofile="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${destArtifactId}.${moduleName}.messages.xml" failonerror="no" />
+		<move file="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${origArtifactId}.${moduleName}.permissions.xml" tofile="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${destArtifactId}.${moduleName}.permissions.xml" failonerror="no" />
 	</target>
 
 	<target name="destroy" description="清理多余目录和文件">
