@@ -6,11 +6,11 @@
 		            <legend>请求参数</legend>
 		            <dl>
 		                <dt>用户名:</dt>
-		                <dd><@s.input path="loginQuery.username" class="required" value="18800000100" /></dd>
+		                <dd><@s.input path="loginQuery.username" class="required" value="admin" /></dd>
 		            </dl>
 		            <dl>
 		                <dt>密码:</dt>
-		                <dd><@s.password path="loginQuery.password" class="required" value="123456"/></dd>
+		                <dd><@s.password path="loginQuery.password" class="required" value="admin"/></dd>
 		            </dl>
 		        </fieldset>
 		        <fieldset>
