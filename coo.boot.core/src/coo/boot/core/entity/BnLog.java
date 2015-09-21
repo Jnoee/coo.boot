@@ -14,7 +14,7 @@ import coo.core.security.entity.BnLogEntity;
  */
 @Entity
 @Table(name = "BnLog")
-@Indexed
+@Indexed(index="BnLog")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class BnLog extends BnLogEntity {
 
