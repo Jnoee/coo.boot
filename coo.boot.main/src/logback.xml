@@ -19,8 +19,8 @@
 			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %m \(%F:%L\)%n</pattern>
 		</encoder>
 	</appender>
-	<logger name="coo" level="DEBUG" />
-	<logger name="coo.mvc.handler.GenericExceptionResolver" level="WARN" />
+	<logger name="coo" level="INFO" />
+	<logger name="coo.boot" level="INFO" />
 	<root level="WARN">
 		<appender-ref ref="console" />
 		<appender-ref ref="file" />
