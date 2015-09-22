@@ -6,10 +6,16 @@
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
-			<pathelement location="ant-contrib-1.0b3.jar"/>
+			<pathelement location="antlibs/ant-contrib-1.0b3.jar" />
 		</classpath>
 	</taskdef>
-	
+
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask">
+		<classpath>
+			<pathelement location="antlibs/xmltask.jar" />
+		</classpath>
+	</taskdef>
+
 	<target name="all" depends="init,copy.project,modify.pom,modify.package,modify.config,destroy" description="构建新项目" />
 
 	<target name="init">
@@ -52,11 +58,21 @@
 
 	<target name="modify.pom" description="修改pom.xml文件">
 		<!-- 修改主项目pom.xml -->
-		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="s" />
-		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="s" />
+		<xmltask source="${destDir}/pom.xml" dest="${destDir}/pom.xml" encoding="UTF-8">
+			<replace path="/:project/:groupId/text()" withText="${destGroupId}" />
+			<replace path="/:project/:artifactId/text()" withText="${destArtifactId}" />
+			<remove path="/:project/:name" />
+			<remove path="/:project/:description" />
+			<remove path="/:project/:url" />
+			<remove path="/:project/:licenses" />
+			<remove path="/:project/:developers" />
+			<remove path="/:project/:scm" />
+			<remove path="/:project/:distributionManagement" />
+			<remove path="/:project/:modules/:module[text()='${origArtifactId}.demo']" />
+		</xmltask>
 		<foreach list="${moduleNames}" target="modify.pom.each" param="moduleName" delimiter="," inheritall="yes" />
 	</target>
-	
+
 	<target name="modify.pom.each" description="修改pom.xml文件">
 		<replaceregexp file="${destDir}/pom.xml" encoding="UTF-8" match="${origArtifactId}.${moduleName}" replace="${destArtifactId}.${moduleName}" flags="s" />
 		<replaceregexp file="${destDir}/${origArtifactId}.${moduleName}/pom.xml" encoding="UTF-8" match="${origGroupId}" replace="${destGroupId}" flags="g" />
@@ -69,11 +85,18 @@
 			<include name="**/*.java" />
 			<include name="**/*.ftl" />
 		</replace>
+		<xmltask source="${destDir}/${destArtifactId}.main/src/app-context.xml" dest="${destDir}/${destArtifactId}.main/src/app-context.xml" encoding="UTF-8">
+			<remove path="//:import[last()]" />
+		</xmltask>
+		<xmltask source="${destDir}/${destArtifactId}.main/pom.xml" dest="${destDir}/${destArtifactId}.main/pom.xml" encoding="UTF-8">
+			<remove path="//:dependency[last()]" />
+		</xmltask>
 		<replaceregexp file="${destDir}/${destArtifactId}.main/src/app-context.xml" encoding="UTF-8" match="${origPackageName}" replace="${destPackageName}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.main/src/logback.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.main/src/ehcache.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
+		<replaceregexp file="${destDir}/${destArtifactId}.main/src/settings.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 	</target>
-	
+
 	<target name="modify.package.each" description="修改项目包路径（目录）">
 		<move todir="${destDir}/${destArtifactId}.${moduleName}">
 			<fileset dir="${destDir}/${origArtifactId}.${moduleName}" />
@@ -86,7 +109,7 @@
 	<target name="modify.config" description="修改配置文件">
 		<foreach list="${moduleNames}" target="modify.config.each" param="moduleName" delimiter="," inheritall="yes" />
 	</target>
-	
+
 	<target name="modify.config.each" description="修改配置文件">
 		<move file="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${origArtifactId}.${moduleName}.xml" tofile="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${destArtifactId}.${moduleName}.xml" failonerror="no" />
 		<move file="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${origArtifactId}.${moduleName}.messages.xml" tofile="${destDir}/${destArtifactId}.${moduleName}/src/META-INF/coo/${destArtifactId}.${moduleName}.messages.xml" failonerror="no" />
