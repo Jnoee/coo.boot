@@ -67,6 +67,10 @@
 			<remove path="/:project/:url" />
 			<remove path="/:project/:licenses" />
 			<remove path="/:project/:developers" />
+			<remove path="/:project/:properties/:plugin.gpg.version" />
+			<remove path="/:project/:properties/:jgit.version" />
+			<remove path="/:project/:properties/:project.scm.id" />
+			<remove path="/:project/:build/:plugins/:plugin[:artifactId/text()='maven-gpg-plugin']" />
 			<remove path="/:project/:scm" />
 			<remove path="/:project/:distributionManagement" />
 			<remove path="/:project/:modules/:module[text()='${origArtifactId}.demo']" />
@@ -85,13 +89,13 @@
 			<include name="**/*.ftl" />
 		</replace>
 		<xmltask source="${destDir}/${destArtifactId}.main/pom.xml" dest="${destDir}/${destArtifactId}.main/pom.xml" encoding="UTF-8">
-			<remove path="//:dependency[last()]" />
+			<remove path="//:dependency[/:artifactId/text()='${origArtifactId}.demo']" />
 		</xmltask>
-		<replaceregexp file="${destDir}/${destArtifactId}.main/src/app-context.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 		<xmltask source="${destDir}/${destArtifactId}.main/src/app-context.xml" dest="${destDir}/${destArtifactId}.main/src/app-context.xml" encoding="UTF-8">
 			<replace path="//context:component-scan/@base-package" withText="${destPackageName}" />
-			<remove path="//:import[last()]" />
+			<remove path="//:import[contains(@resource,'${origArtifactId}.demo')]" />
 		</xmltask>
+		<replaceregexp file="${destDir}/${destArtifactId}.main/src/app-context.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.main/src/logback.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.main/src/ehcache.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
 		<replaceregexp file="${destDir}/${destArtifactId}.main/src/settings.xml" encoding="UTF-8" match="${origArtifactId}" replace="${destArtifactId}" flags="g" />
