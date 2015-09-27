@@ -13,7 +13,7 @@
 	            </dl>
 	            <dl>
 	                <dt>序号：</dt>
-	                <dd><@s.input path="organ.ordinal" min="0" max="99999" class="digits" /></dd>
+	                <dd><@s.input path="organ.ordinal" min="0" max="99999" class="required digits" /></dd>
 	            </dl>
 	        </div>
 	        <@dwz.formBar />

@@ -18,7 +18,7 @@
 	            </dl>
 	            <dl>
 	                <dt>序号：</dt>
-	                <dd><@s.input path="user.ordinal" min="0" max="99999" class="digits" /></dd>
+	                <dd><@s.input path="user.ordinal" min="0" max="99999" class="required digits" /></dd>
 	            </dl>
 				<div class="divider"></div>
 	            <dl class="nowrap">
