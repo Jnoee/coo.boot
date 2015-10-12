@@ -12,7 +12,7 @@ import coo.core.hibernate.search.EntityIndexManager;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.util.NavTabResultUtils;
+import coo.mvc.dwz.NavTabResultUtils;
 
 /**
  * 系统维护。

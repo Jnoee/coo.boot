@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import coo.boot.api.model.LoginQuery;
 import coo.boot.api.model.LoginReply;
 import coo.boot.api.service.ApiFacade;
-import coo.mvc.actions.ApiAction;
+import coo.mvc.api.ApiAction;
 
 @Controller
 @RequestMapping("/api/v1")

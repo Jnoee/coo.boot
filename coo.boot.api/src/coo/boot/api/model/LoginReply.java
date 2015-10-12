@@ -1,6 +1,6 @@
 package coo.boot.api.model;
 
-import coo.mvc.model.ApiReply;
+import coo.mvc.api.ApiReply;
 
 /**
  * 登录响应。

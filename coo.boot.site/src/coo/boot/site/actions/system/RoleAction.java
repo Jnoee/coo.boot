@@ -17,8 +17,8 @@ import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
 import coo.core.security.permission.PermissionConfig;
-import coo.mvc.util.DialogResultUtils;
-import coo.mvc.util.NavTabResultUtils;
+import coo.mvc.dwz.DialogResultUtils;
+import coo.mvc.dwz.NavTabResultUtils;
 
 /**
  * 角色管理。

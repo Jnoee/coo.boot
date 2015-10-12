@@ -13,7 +13,7 @@ import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.util.DialogResultUtils;
+import coo.mvc.dwz.DialogResultUtils;
 
 /**
  * 职务管理。

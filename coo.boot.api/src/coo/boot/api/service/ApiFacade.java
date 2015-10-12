@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import coo.base.exception.BusinessException;
 import coo.boot.core.service.SecurityService;
-import coo.mvc.util.ApiUtils;
+import coo.mvc.api.ApiUtils;
 
 /**
  * API接口面板。

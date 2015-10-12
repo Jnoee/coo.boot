@@ -11,8 +11,8 @@ import coo.boot.demo.entity.Company;
 import coo.boot.demo.service.CompanyService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
-import coo.mvc.util.DialogResultUtils;
-import coo.mvc.util.NavTabResultUtils;
+import coo.mvc.dwz.DialogResultUtils;
+import coo.mvc.dwz.NavTabResultUtils;
 
 /**
  * 公司管理。

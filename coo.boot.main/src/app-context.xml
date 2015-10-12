@@ -12,8 +12,9 @@
 	<!-- 加载Coo组件 -->
 	<import resource="classpath:META-INF/coo/coo.core.xml" />
 	<import resource="classpath:META-INF/coo/coo.core.support.xml" />
-	<import resource="classpath:META-INF/coo/coo.mvc.xml" />
 	<import resource="classpath:META-INF/coo/coo.core.security.xml" />
+	<import resource="classpath:META-INF/coo/coo.mvc.xml" />
+	<import resource="classpath:META-INF/coo/coo.mvc.support.xml" />
 	<import resource="classpath:META-INF/coo/coo.mvc.security.xml" />
 	
 	<import resource="classpath:META-INF/coo/coo.boot.core.xml" />

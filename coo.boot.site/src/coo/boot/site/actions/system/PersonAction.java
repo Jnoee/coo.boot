@@ -11,7 +11,7 @@ import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.model.PwdChangeModel;
-import coo.mvc.util.DialogResultUtils;
+import coo.mvc.dwz.DialogResultUtils;
 
 /**
  * 个人管理。

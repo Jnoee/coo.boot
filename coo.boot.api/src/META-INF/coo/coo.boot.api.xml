@@ -14,7 +14,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/api/*/*" />
-			<bean class="coo.mvc.interceptor.ApiInterceptor" />
+			<bean class="coo.mvc.api.ApiInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

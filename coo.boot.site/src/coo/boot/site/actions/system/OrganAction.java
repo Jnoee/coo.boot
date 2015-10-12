@@ -14,8 +14,8 @@ import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.util.DialogResultUtils;
-import coo.mvc.util.NavTabResultUtils;
+import coo.mvc.dwz.DialogResultUtils;
+import coo.mvc.dwz.NavTabResultUtils;
 
 /**
  * 机构管理
