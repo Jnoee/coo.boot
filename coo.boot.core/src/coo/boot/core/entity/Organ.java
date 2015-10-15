@@ -15,5 +15,5 @@ import coo.core.security.entity.OrganEntity;
 @Table(name = "Organ")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Organ extends OrganEntity<Organ, User, Actor> {
-
+	private static final long serialVersionUID = 9197249548328662679L;
 }
