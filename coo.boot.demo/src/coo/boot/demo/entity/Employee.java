@@ -38,6 +38,7 @@ import coo.core.security.entity.ResourceEntity;
 @XStreamAlias("employee")
 @JsonIgnoreProperties({ "creator", "modifier" })
 public class Employee extends ResourceEntity<User> {
+	private static final long serialVersionUID = 5408086709494267860L;
 	/** 关联部门 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "companyId")

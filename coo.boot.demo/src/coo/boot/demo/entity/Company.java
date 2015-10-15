@@ -40,6 +40,7 @@ import coo.core.security.annotations.LogField;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @XStreamAlias("company")
 public class Company extends UuidEntity {
+	private static final long serialVersionUID = -7079623780422163425L;
 	/** 名称 */
 	@NotBlank
 	@Field(analyze = Analyze.NO)

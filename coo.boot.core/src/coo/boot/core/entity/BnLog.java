@@ -14,8 +14,8 @@ import coo.core.security.entity.BnLogEntity;
  */
 @Entity
 @Table(name = "BnLog")
-@Indexed(index="BnLog")
+@Indexed(index = "BnLog")
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class BnLog extends BnLogEntity {
-
+	private static final long serialVersionUID = -183679360294817527L;
 }

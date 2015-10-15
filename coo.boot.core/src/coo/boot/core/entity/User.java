@@ -17,4 +17,5 @@ import coo.core.security.entity.UserEntity;
 @Indexed(index = "User")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class User extends UserEntity<User, Actor> {
+	private static final long serialVersionUID = 2878909792984418733L;
 }
