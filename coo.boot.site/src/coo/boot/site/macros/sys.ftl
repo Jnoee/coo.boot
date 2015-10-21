@@ -6,7 +6,17 @@
 
 <#macro organTreeNode organ>
 	<li>
-		<@dwz.a href="/system/organ-edit?organ=${organ.id}" target="ajax" rel="organBox" organId="${organ.id}">${organ.name}</@dwz.a>
+		<@dwz.a href="/system/organ-edit?organ=${organ.id}" target="ajax" rel="organBox" organId="${organ.id}" style="color:${organ.enabled.color}">${organ.name}</@dwz.a>
+		<#if organ.isRoot()>
+			<@dwz.a href="/system/organ-add" target="dialog" class="right">[新增机构]</@dwz.a>
+	    <#else>
+			<#if organ.enabled == EnabledStatus.ENABLED>
+	       		<@dwz.a href="/system/organ-disable?organ=${organ.id}" target="ajaxTodo" title="您是否确定要停用该机构？" class="right">[停用]</@dwz.a>
+	       	<#else>
+	       		<@dwz.a href="/system/organ-enable?organ=${organ.id}" target="ajaxTodo" title="您是否确定要启用该机构？" class="right">[启用]</@dwz.a>
+	       	</#if>
+	    	
+       	</#if>
 		<#if organ.childs?size gt 0>
 			<ul>
 		        <#list organ.childs as childOrgan>
