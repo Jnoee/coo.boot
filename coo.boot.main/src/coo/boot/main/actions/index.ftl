@@ -61,7 +61,7 @@
         </div>
         <script type="text/javascript">
             $(function() {
-                DWZ.init("dwz.frag.xml", {
+                DWZ.init({
                     loginUrl : "${ctx}/login",
                     debug : false,
                     callback : function() {
