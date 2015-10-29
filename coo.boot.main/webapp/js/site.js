@@ -1,6 +1,6 @@
 function apitestSubmit(btn, format) {
 	var form = $(btn).closest("form"); 
-	var dest = $("fieldset:last > textarea", $(btn).getPageDiv()); 
+	var dest = $("fieldset:last > textarea", $(btn).unitBox()); 
 	$.ajax({
         type: "POST",
         url: form.attr("action") + "." + format,

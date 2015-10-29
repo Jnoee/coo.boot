@@ -3,7 +3,7 @@
     <div class="pageContent">
         <div class="panelBar">
             <ul class="toolBar">
-                <li><@dwz.a href="/company/company-add" target="dialog" title="新增公司" height="SS"><span class="a09">新增</span></@dwz.a></li>
+                <li><@dwz.a href="/company/company-add" target="dialog" title="新增公司" height="SS"><span class="fa-plus">新增</span></@dwz.a></li>
             </ul>
         </div>
         <table class="table" width="100%" layoutH="75">

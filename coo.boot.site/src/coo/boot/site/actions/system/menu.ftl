@@ -1,6 +1,6 @@
 <div class="accordion" fillSpace="sidebar">
     <div class="accordionHeader">
-        <h2><span class="a36">Folder</span>系统管理</h2>
+        <h2 class="fa-sitemap">系统管理</h2>
     </div>
     <div class="accordionContent">
         <ul class="tree expand">

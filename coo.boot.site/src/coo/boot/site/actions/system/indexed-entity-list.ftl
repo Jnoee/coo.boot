@@ -4,7 +4,7 @@
             <ul class="toolBar">
                 <li>
                     <@dwz.a href="/system/indexed-entity-build" target="selectedTodo" rel="indexedEntityClasses" title="您确定要重建这些全文索引吗？">
-						<span class="a34">重建全文索引</span>
+						<span class="fa-sliders">重建全文索引</span>
 					</@dwz.a>
                 </li>
             </ul>

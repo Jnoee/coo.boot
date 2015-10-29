@@ -1,6 +1,6 @@
 <div class="accordion" fillSpace="sidebar">
     <div class="accordionHeader">
-        <h2><span class="a33">Folder</span>公司管理</h2>
+        <h2 class="fa-users">公司管理</h2>
     </div>
     <div class="accordionContent">
         <ul class="tree">

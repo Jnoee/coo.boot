@@ -5,7 +5,7 @@
     <div class="pageContent">
         <div class="panelBar">
             <ul class="toolBar">
-                <li><@dwz.a href="/company/employee-add" target="dialog" width="S" height="SS" title="新增职员"><span class="a09">新增</span></@dwz.a></li>
+                <li><@dwz.a href="/company/employee-add" target="dialog" width="S" height="SS" title="新增职员"><span class="fa-plus">新增</span></@dwz.a></li>
             </ul>
         </div>
         <table class="table" width="100%" layoutH="112">

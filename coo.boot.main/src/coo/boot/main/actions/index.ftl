@@ -31,6 +31,7 @@
                         <li><@dwz.a href="/system/person-pwd-change" target="dialog" width="SS" height="SSS">修改密码</@dwz.a></li>
                         <li><@s.a href="/logout">退出</@s.a></li>
                     </ul>
+                    <#--
                     <ul class="themeList" id="themeList">
                         <li theme="default"><div class="selected">蓝色</div></li>
                         <li theme="green"><div>绿色</div></li>
@@ -38,6 +39,7 @@
                         <li theme="silver"><div>银色</div></li>
                         <li theme="azure"><div>天蓝</div></li>
                     </ul>
+                    -->
                 </div>
                 <div id="navMenu">
                     <ul>
@@ -66,14 +68,10 @@
                     debug : false,
                     callback : function() {
                         initEnv();
-                        $("#themeList").theme({
-                            dwzTheme: "${ctx}/dwz/themes",
-                            fixTheme: "${ctx}/fix/themes"
-                        });
                         navTab.openTab("main", "home", {
                             title : "我的首页"
                         });
-                        setTimeout("clickNavMenu(0)", 10);
+                        setTimeout("DWZ.openNavMenu(0)", 10);
                     }
                 });
             });
