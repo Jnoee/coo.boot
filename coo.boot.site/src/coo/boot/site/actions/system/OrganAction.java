@@ -14,8 +14,7 @@ import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.dwz.DialogResultUtils;
-import coo.mvc.dwz.NavTabResultUtils;
+import coo.mvc.dwz.DwzResultBuild;
 
 /**
  * 机构管理
@@ -58,7 +57,7 @@ public class OrganAction {
 		Organ rootOrgan = securityService.getRootOrgan();
 		Organ organ = new Organ();
 		organ.setParent(rootOrgan);
-		model.addAttribute("parentOrgans", rootOrgan.getOrganTree());
+		model.addAttribute("parentOrgans", rootOrgan.getChildTree());
 		model.addAttribute("rootOrgan", rootOrgan);
 		model.addAttribute(organ);
 	}
@@ -73,9 +72,8 @@ public class OrganAction {
 	@RequestMapping("organ-save")
 	public ModelAndView save(Organ organ) {
 		securityService.createOrgan(organ);
-		return DialogResultUtils.closeAndForwardNavTab(
-				messageSource.get("organ.add.success"),
-				"/system/organ-list?selectedOrganId=" + organ.getId());
+		return new DwzResultBuild().success("organ.add.success").closeDialog()
+				.reloadNavTab("selectedOrganId=" + organ.getId()).build();
 	}
 
 	/**
@@ -90,7 +88,7 @@ public class OrganAction {
 	public void edit(Model model, Organ organ) {
 		Organ rootOrgan = securityService.getRootOrgan();
 		model.addAttribute("rootOrgan", rootOrgan);
-		List<Organ> parentOrgans = rootOrgan.getOrganTree();
+		List<Organ> parentOrgans = rootOrgan.getChildTree();
 		parentOrgans.remove(organ);
 		model.addAttribute("parentOrgans", parentOrgans);
 	}
@@ -105,9 +103,8 @@ public class OrganAction {
 	@RequestMapping("organ-update")
 	public ModelAndView update(Organ organ) {
 		securityService.updateOrgan(organ);
-		return NavTabResultUtils.forward(
-				messageSource.get("organ.edit.success"),
-				"/system/organ-list?selectedOrganId=" + organ.getId());
+		return new DwzResultBuild().success("organ.edit.success")
+				.reloadNavTab("selectedOrganId=" + organ.getId()).build();
 	}
 
 	/**
@@ -120,10 +117,13 @@ public class OrganAction {
 	@RequestMapping("organ-delete")
 	public ModelAndView delete(Organ organ) {
 		securityService.deleteOrgan(organ);
-		return NavTabResultUtils.forward(
-				messageSource.get("organ.delete.success"),
-				"/system/organ-list?selectedOrganId="
-						+ securityService.getCurrentOrgan().getId());
+		return new DwzResultBuild()
+				.success("organ.delete.success")
+				.closeDialog()
+				.reloadNavTab(
+						"selectedOrganId="
+								+ securityService.getCurrentOrgan().getId())
+				.build();
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class OrganAction {
 	@RequestMapping("organ-enable")
 	public ModelAndView enable(Organ organ) {
 		securityService.enableOrgan(organ);
-		return NavTabResultUtils.forward(
-				messageSource.get("organ.enable.success"),
-				"/system/organ-list?selectedOrganId=" + organ.getId());
+		return new DwzResultBuild().success("organ.enable.success")
+				.closeDialog().reloadNavTab("selectedOrganId=" + organ.getId())
+				.build();
 	}
 
 	/**
@@ -151,8 +151,8 @@ public class OrganAction {
 	@RequestMapping("organ-disable")
 	public ModelAndView disable(Organ organ) {
 		securityService.disableOrgan(organ);
-		return NavTabResultUtils.forward(
-				messageSource.get("organ.disable.success"),
-				"/system/organ-list?selectedOrganId=" + organ.getId());
+		return new DwzResultBuild().success("organ.disable.success")
+				.closeDialog().reloadNavTab("selectedOrganId=" + organ.getId())
+				.build();
 	}
 }

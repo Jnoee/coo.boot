@@ -12,7 +12,7 @@ import coo.core.hibernate.search.EntityIndexManager;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.dwz.NavTabResultUtils;
+import coo.mvc.dwz.DwzResultBuild;
 
 /**
  * 系统维护。
@@ -50,8 +50,8 @@ public class RepairedAction {
 	@RequestMapping("indexed-entity-build")
 	public ModelAndView buildIndexedEntity(Class<?>[] indexedEntityClasses) {
 		entityIndexManager.startAndWait(indexedEntityClasses);
-		return NavTabResultUtils.reload(messageSource
-				.get("indexed.entity.build.success"));
+		return new DwzResultBuild().success("indexed.entity.build.success")
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class RepairedAction {
 		model.addAttribute("cachedEntityClasses",
 				entityCacheManager.getCachedEntityClasses());
 	}
-	
+
 	/**
 	 * 清理实体类缓存。
 	 * 
@@ -76,10 +76,10 @@ public class RepairedAction {
 	@RequestMapping("cached-entity-evict")
 	public ModelAndView evictCachedEntity(Class<?>[] cachedEntityClasses) {
 		entityCacheManager.evictEntityRegion(cachedEntityClasses);
-		return NavTabResultUtils.reload(messageSource
-				.get("cached.entity.evict.success"));
+		return new DwzResultBuild().success("cached.entity.evict.success")
+				.reloadNavTab().build();
 	}
-	
+
 	/**
 	 * 清空所有实体缓存。
 	 * 
@@ -88,8 +88,8 @@ public class RepairedAction {
 	@RequestMapping("entity-regions-evict")
 	public ModelAndView evictEntityRegions() {
 		entityCacheManager.evictEntityRegions();
-		return NavTabResultUtils.reload(messageSource
-				.get("entity.regions.evict.success"));
+		return new DwzResultBuild().success("entity.regions.evict.success")
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class RepairedAction {
 	@RequestMapping("collection-regions-evict")
 	public ModelAndView evictCollectionRegions() {
 		entityCacheManager.evictCollectionRegions();
-		return NavTabResultUtils.reload(messageSource
-				.get("collection.regions.evict.success"));
+		return new DwzResultBuild().success("collection.regions.evict.success")
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class RepairedAction {
 	@RequestMapping("query-regions-evict")
 	public ModelAndView evictQueryRegions() {
 		entityCacheManager.evictQueryRegions();
-		return NavTabResultUtils.reload(messageSource
-				.get("query.regions.evict.success"));
+		return new DwzResultBuild().success("query.regions.evict.success")
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class RepairedAction {
 	@RequestMapping("all-regions-evict")
 	public ModelAndView evictAllRegions() {
 		entityCacheManager.evictAllRegions();
-		return NavTabResultUtils.reload(messageSource
-				.get("all.regions.evict.success"));
+		return new DwzResultBuild().success("all.regions.evict.success")
+				.reloadNavTab().build();
 	}
 }

@@ -10,10 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import coo.boot.core.entity.Actor;
 import coo.boot.core.entity.User;
 import coo.boot.core.service.SecurityService;
-import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.dwz.DialogResultUtils;
+import coo.mvc.dwz.DwzResultBuild;
 
 /**
  * 职务管理。
@@ -24,8 +23,6 @@ import coo.mvc.dwz.DialogResultUtils;
 public class ActorAction {
 	@Resource
 	private SecurityService securityService;
-	@Resource
-	private MessageSource messageSource;
 
 	/**
 	 * 查看职务列表。
@@ -67,8 +64,8 @@ public class ActorAction {
 	@RequestMapping("actor-save")
 	public ModelAndView save(Actor actor) {
 		securityService.createActor(actor);
-		return DialogResultUtils.closeAndReloadDialog(
-				messageSource.get("actor.add.success"), "actor-list");
+		return new DwzResultBuild().success("actor.add.success").closeDialog()
+				.reloadDialog("actor-list", "", "").build();
 	}
 
 	/**
@@ -96,8 +93,8 @@ public class ActorAction {
 	@RequestMapping("actor-update")
 	public ModelAndView update(Actor actor) {
 		securityService.updateActor(actor);
-		return DialogResultUtils.closeAndReloadDialog(
-				messageSource.get("actor.edit.success"), "actor-list");
+		return new DwzResultBuild().success("actor.edit.success").closeDialog()
+				.reloadDialog("actor-list", "", "").build();
 	}
 
 	/**
@@ -110,8 +107,8 @@ public class ActorAction {
 	@RequestMapping("actor-delete")
 	public ModelAndView delete(Actor actor) {
 		securityService.deleteActor(actor);
-		return DialogResultUtils.reload(messageSource
-				.get("actor.delete.success"));
+		return new DwzResultBuild().success("actor.delete.success")
+				.reloadDialog().build();
 	}
 
 	/**
@@ -124,7 +121,7 @@ public class ActorAction {
 	@RequestMapping("actor-set-default")
 	public ModelAndView setDefault(Actor actor) {
 		securityService.setDefaultActor(actor);
-		return DialogResultUtils.reload(messageSource
-				.get("actor.set.default.success"));
+		return new DwzResultBuild().success("actor.set.default.success")
+				.reloadDialog().build();
 	}
 }

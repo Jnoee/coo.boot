@@ -6,7 +6,7 @@
 	        <div class="pageFormContent" layoutH="60">
 	        	<dl>
 	                <dt>关联机构：</dt>
-	                <dd><@s.select path="actor.organ" items=rootOrgan.organTree itemValue="id" itemLabel="selectText" value="actor.organ.id" class="required combox" /></dd>
+	                <dd><@s.select path="actor.organ" items=rootOrgan.childTree itemValue="id" itemLabel="selectText" value="actor.organ.id" class="required combox" /></dd>
 				</dl>
 				<dl>
 	                <dt>关联角色：</dt>

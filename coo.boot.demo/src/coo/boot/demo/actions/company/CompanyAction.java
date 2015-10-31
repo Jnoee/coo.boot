@@ -11,8 +11,7 @@ import coo.boot.demo.entity.Company;
 import coo.boot.demo.service.CompanyService;
 import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
-import coo.mvc.dwz.DialogResultUtils;
-import coo.mvc.dwz.NavTabResultUtils;
+import coo.mvc.dwz.DwzResultBuild;
 
 /**
  * 公司管理。
@@ -58,8 +57,8 @@ public class CompanyAction {
 	@RequestMapping("company-save")
 	public ModelAndView save(Company company) {
 		companyService.createCompany(company);
-		return DialogResultUtils.closeAndReloadNavTab(messageSource
-				.get("company.add.success"));
+		return new DwzResultBuild().success("company.add.success")
+				.closeDialog().reloadNavTab().build();
 	}
 
 	/**
@@ -85,8 +84,8 @@ public class CompanyAction {
 	@RequestMapping("company-update")
 	public ModelAndView update(Company company) {
 		companyService.updateCompany(company);
-		return DialogResultUtils.closeAndReloadNavTab(messageSource
-				.get("company.edit.success"));
+		return new DwzResultBuild().success("company.edit.success")
+				.closeDialog().reloadNavTab().build();
 	}
 
 	/**
@@ -99,7 +98,7 @@ public class CompanyAction {
 	@RequestMapping("company-delete")
 	public ModelAndView delete(Company company) {
 		companyService.deleteCompany(company);
-		return NavTabResultUtils.reload(messageSource
-				.get("company.delete.success"));
+		return new DwzResultBuild().success("company.delete.success")
+				.reloadNavTab().build();
 	}
 }

@@ -17,8 +17,7 @@ import coo.core.message.MessageSource;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
 import coo.core.security.permission.PermissionConfig;
-import coo.mvc.dwz.DialogResultUtils;
-import coo.mvc.dwz.NavTabResultUtils;
+import coo.mvc.dwz.DwzResultBuild;
 
 /**
  * 角色管理。
@@ -80,9 +79,8 @@ public class RoleAction {
 		role.setPermissions(permissionConfig.getPermissionCode(Arrays
 				.asList(permissionIds)));
 		securityService.createRole(role);
-		return DialogResultUtils.closeAndForwardNavTab(
-				messageSource.get("role.add.success"),
-				"/system/role-list?selectedRoleId=" + role.getId());
+		return new DwzResultBuild().success("role.add.success").closeDialog()
+				.reloadNavTab("selectedRoleId=" + role.getId()).build();
 	}
 
 	/**
@@ -115,8 +113,7 @@ public class RoleAction {
 		role.setPermissions(permissionConfig.getPermissionCode(Arrays
 				.asList(permissionIds)));
 		securityService.updateRole(role);
-		return NavTabResultUtils.forward(
-				messageSource.get("role.edit.success"),
-				"/system/role-list?selectedRoleId=" + role.getId());
+		return new DwzResultBuild().success("role.edit.success").closeDialog()
+				.reloadNavTab("selectedRoleId=" + role.getId()).build();
 	}
 }

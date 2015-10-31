@@ -13,8 +13,7 @@ import coo.core.message.MessageSource;
 import coo.core.model.SearchModel;
 import coo.core.security.annotations.Auth;
 import coo.core.security.permission.AdminPermission;
-import coo.mvc.dwz.DialogResultUtils;
-import coo.mvc.dwz.NavTabResultUtils;
+import coo.mvc.dwz.DwzResultBuild;
 
 /**
  * 用户管理。
@@ -64,8 +63,8 @@ public class UserAction {
 	@RequestMapping("user-save")
 	public ModelAndView save(User user) {
 		securityService.createUser(user);
-		return DialogResultUtils.closeAndReloadNavTab(messageSource
-				.get("user.add.success"));
+		return new DwzResultBuild().success("user.add.success").closeDialog()
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -91,8 +90,8 @@ public class UserAction {
 	@RequestMapping("user-update")
 	public ModelAndView update(User user) {
 		securityService.updateUser(user);
-		return DialogResultUtils.closeAndReloadNavTab(messageSource
-				.get("user.edit.success"));
+		return new DwzResultBuild().success("user.edit.success").closeDialog()
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -105,8 +104,8 @@ public class UserAction {
 	@RequestMapping("user-disable")
 	public ModelAndView disable(User user) {
 		securityService.disableUser(user);
-		return NavTabResultUtils.reload(messageSource
-				.get("user.disable.success"));
+		return new DwzResultBuild().success("user.disable.success")
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -119,8 +118,8 @@ public class UserAction {
 	@RequestMapping("user-enable")
 	public ModelAndView enable(User user) {
 		securityService.enableUser(user);
-		return NavTabResultUtils.reload(messageSource
-				.get("user.enable.success"));
+		return new DwzResultBuild().success("user.enable.success")
+				.reloadNavTab().build();
 	}
 
 	/**
@@ -148,7 +147,7 @@ public class UserAction {
 	@RequestMapping("user-pwd-reset-save")
 	public ModelAndView pwdResetSave(String managePassword, User user) {
 		securityService.resetPassword(managePassword, user);
-		return DialogResultUtils.close(messageSource
-				.get("user.pwd.reset.success"));
+		return new DwzResultBuild().success("user.pwd.reset.success")
+				.closeDialog().build();
 	}
 }

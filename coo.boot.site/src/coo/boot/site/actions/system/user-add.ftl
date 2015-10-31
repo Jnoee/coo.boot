@@ -27,7 +27,7 @@
 	            <div class="divider"></div>
 	            <dl>
 	                <dt>关联机构：</dt>
-	                <dd><@s.select path="user.defaultActor.organ" items=rootOrgan.organTree itemLabel="selectText" itemValue="id" class="required combox" /></dd>
+	                <dd><@s.select path="user.defaultActor.organ" items=rootOrgan.childTree itemLabel="selectText" itemValue="id" class="required combox" /></dd>
 				</dl>
 				<dl>
 	                <dt>关联角色：</dt>
