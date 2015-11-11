@@ -20,6 +20,7 @@ import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.SortableField;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -45,6 +46,7 @@ public class Company extends UuidEntity {
 	@NotBlank
 	@Field(analyze = Analyze.NO)
 	@LogField(text = "名称")
+	@SortableField
 	private String name;
 	/** 成立时间 */
 	@NotNull

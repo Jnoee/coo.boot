@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <#list logPage.contents as log>
-	                <tr target="sid_user" rel="1">
+	                <tr>
 	                    <td>${log.createDate?datetime}</td>
 	                    <td>${log.creator}</td>
 	                    <td>${log.message}</td>

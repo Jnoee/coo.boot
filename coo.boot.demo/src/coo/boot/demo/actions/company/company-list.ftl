@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <#list companys as company>
-                <tr target="sid_user" rel="1">
+                <tr>
                     <td>${company.name}</td>
 					<td>${company.foundDate?date}</td>
 					<td>${company.extendInfo.address}</td>

@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <#list userPage.contents as user>
-                <tr target="sid_user" rel="1">
+                <tr>
                     <td>${user.username}</td>
                     <td>${user.name}</td>
                     <td>${user.defaultActor.fullName}</td>

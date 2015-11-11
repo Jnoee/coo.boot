@@ -21,7 +21,7 @@
             </thead>
             <tbody>
                 <#list employeePage.contents as employee>
-                <tr target="sid_user" rel="1">
+                <tr>
                     <td>${employee.name}</td>
                     <td>${employee.company.name}</td>
                     <td>${employee.age}</td>

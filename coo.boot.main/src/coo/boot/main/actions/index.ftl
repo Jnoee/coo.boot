@@ -21,15 +21,15 @@
                             <a href="javascript:;">${currentUser.name}（${currentUser.defaultActor.fullName}）</a>
                         </li>
                         <li id="switchEnvBox">
-                            <a href="javascript:;">切换职务</a>
+                            <a href="javascript:;" class="fa-users">切换职务</a>
                             <ul>
                                 <#list currentUser.actors as actor>
                                 	<li><@s.a href="/system/person-actor-change?actorId=${actor.id}">${actor.organ.name}-${actor.name}</@s.a></li>
                                 </#list>
                             </ul>
                         </li>
-                        <li><@dwz.a href="/system/person-pwd-change" target="dialog" width="SS" height="SSS">修改密码</@dwz.a></li>
-                        <li><@s.a href="/logout">退出</@s.a></li>
+                        <li><@dwz.a href="/system/person-pwd-change" target="dialog" width="SS" height="SSS" class="fa-gear">修改密码</@dwz.a></li>
+                        <li><@s.a href="/logout" class="fa-power-off">退出</@s.a></li>
                     </ul>
                     <#--
                     <ul class="themeList" id="themeList">
@@ -44,13 +44,13 @@
                 <div id="navMenu">
                     <ul>
                         <@sec.any name="COMPANY_MANAGE,EMPLOYEE_MANAGE">
-                        	<li><@s.a href="/company/menu"><span>公司管理</span></@s.a></li>
+                        	<li><@s.a href="/company/menu"><span class="fa-cubes">公司管理</span></@s.a></li>
                         </@sec.any>
                         <@sec.any name="ADMIN">
-	                        <li><@s.a href="/system/menu"><span>系统管理</span></@s.a></li>
+	                        <li><@s.a href="/system/menu"><span class="fa-sitemap">系统管理</span></@s.a></li>
                         </@sec.any>
                         <@sec.any name="ADMIN">
-			                <li><@s.a href="/apitest/menu"><span>接口测试</span></@s.a></li>
+			                <li><@s.a href="/apitest/menu"><span class="fa-share-alt">接口测试</span></@s.a></li>
 			            </@sec.any>
                     </ul>
                 </div>
