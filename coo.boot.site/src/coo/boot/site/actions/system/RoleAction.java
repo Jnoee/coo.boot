@@ -113,7 +113,7 @@ public class RoleAction {
 		role.setPermissions(permissionConfig.getPermissionCode(Arrays
 				.asList(permissionIds)));
 		securityService.updateRole(role);
-		return new DwzResultBuild().success("role.edit.success").closeDialog()
+		return new DwzResultBuild().success("role.edit.success")
 				.reloadNavTab("selectedRoleId=" + role.getId()).build();
 	}
 }
