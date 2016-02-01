@@ -11,13 +11,13 @@
         <table class="table" width="100%" layoutH="112">
             <thead>
                 <tr>
-                    <th>用户名</th>
-                    <th width="150px">姓名</th>
-                    <th width="200px">默认职务</th>
-					<th width="150px">创建时间</th>
-					<th width="80px">创建人</th>
-					<th width="150px">修改时间</th>
-					<th width="80px">修改人</th>
+                    <th width="100px">用户名</th>
+                    <th width="100px">姓名</th>
+                    <th>默认职务</th>
+					<th width="130px">创建时间</th>
+					<th width="100px">创建人</th>
+					<th width="130px">修改时间</th>
+					<th width="100px">修改人</th>
                     <th width="80px" align="center">状态</th>
                     <th width="180px">操作</th>
                 </tr>
