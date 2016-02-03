@@ -1,7 +1,7 @@
 <div class="page">
     <div class="pageContent">
         <@dwz.form action="/system/person-pwd-change-save">
-	        <div class="pageFormContent" layoutH="56">
+	        <div class="pageFormContent" layoutH="57">
 	            <dl>
 	                <dt>原密码：</dt>
 	                <dd><@s.password path="pwdChangeModel.oldPwd" maxlength="20" class="required" /></dd>
