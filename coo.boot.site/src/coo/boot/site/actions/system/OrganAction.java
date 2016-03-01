@@ -137,8 +137,7 @@ public class OrganAction {
 	public ModelAndView enable(Organ organ) {
 		securityService.enableOrgan(organ);
 		return new DwzResultBuild().success("organ.enable.success")
-				.closeDialog().reloadNavTab("selectedOrganId=" + organ.getId())
-				.build();
+				.reloadNavTab("selectedOrganId=" + organ.getId()).build();
 	}
 
 	/**
@@ -152,7 +151,6 @@ public class OrganAction {
 	public ModelAndView disable(Organ organ) {
 		securityService.disableOrgan(organ);
 		return new DwzResultBuild().success("organ.disable.success")
-				.closeDialog().reloadNavTab("selectedOrganId=" + organ.getId())
-				.build();
+				.reloadNavTab("selectedOrganId=" + organ.getId()).build();
 	}
 }

@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import coo.base.model.BitCode;
+import coo.base.util.CollectionUtils;
 import coo.boot.core.entity.Role;
 import coo.boot.core.service.SecurityService;
 import coo.core.message.MessageSource;
@@ -76,8 +78,12 @@ public class RoleAction {
 	 */
 	@RequestMapping("role-save")
 	public ModelAndView save(Role role, Integer[] permissionIds) {
-		role.setPermissions(permissionConfig.getPermissionCode(Arrays
-				.asList(permissionIds)));
+		BitCode permissions = new BitCode();
+		if (CollectionUtils.isNotEmpty(permissionIds)) {
+			permissions = permissionConfig.getPermissionCode(Arrays
+					.asList(permissionIds));
+		}
+		role.setPermissions(permissions);
 		securityService.createRole(role);
 		return new DwzResultBuild().success("role.add.success").closeDialog()
 				.reloadNavTab("selectedRoleId=" + role.getId()).build();
@@ -110,8 +116,12 @@ public class RoleAction {
 	 */
 	@RequestMapping("role-update")
 	public ModelAndView update(Role role, Integer[] permissionIds) {
-		role.setPermissions(permissionConfig.getPermissionCode(Arrays
-				.asList(permissionIds)));
+		BitCode permissions = new BitCode();
+		if (CollectionUtils.isNotEmpty(permissionIds)) {
+			permissions = permissionConfig.getPermissionCode(Arrays
+					.asList(permissionIds));
+		}
+		role.setPermissions(permissions);
 		securityService.updateRole(role);
 		return new DwzResultBuild().success("role.edit.success")
 				.reloadNavTab("selectedRoleId=" + role.getId()).build();

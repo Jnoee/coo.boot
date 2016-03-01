@@ -31,9 +31,7 @@ public class EmployeeService {
 	@Transactional(readOnly = true)
 	public Page<Employee> searchEmployee(SearchModel searchModel) {
 		FullTextCriteria criteria = employeeDao.createFullTextCriteria();
-		criteria.setKeyword(searchModel.getKeyword());
-		return employeeDao.searchPage(criteria, searchModel.getPageNo(),
-				searchModel.getPageSize());
+		return employeeDao.searchPage(criteria, searchModel);
 	}
 
 	/**

@@ -94,7 +94,7 @@ public class ActorAction {
 	public ModelAndView update(Actor actor) {
 		securityService.updateActor(actor);
 		return new DwzResultBuild().success("actor.edit.success").closeDialog()
-				.reloadDialog("actor-list", "", "").build();
+				.reloadDialog("actor-list", "", "").reloadNavTab().build();
 	}
 
 	/**
@@ -122,6 +122,6 @@ public class ActorAction {
 	public ModelAndView setDefault(Actor actor) {
 		securityService.setDefaultActor(actor);
 		return new DwzResultBuild().success("actor.set.default.success")
-				.reloadDialog().build();
+				.reloadDialog().reloadNavTab().build();
 	}
 }
