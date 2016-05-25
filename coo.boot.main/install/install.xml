@@ -11,21 +11,21 @@
 		<!-- mvn release:perform 打包 -->
 		<fileSet>
 			<directory>../../install/bin</directory>
-			<outputDirectory>/bin</outputDirectory>
+			<outputDirectory>bin</outputDirectory>
 			<includes>
 				<include>**.*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>../../install/tomcat</directory>
-			<outputDirectory>/tomcat</outputDirectory>
+			<outputDirectory>tomcat</outputDirectory>
 			<includes>
 				<include>**/**</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>../../../${project.parent.artifactId}.db</directory>
-			<outputDirectory>/dbscript</outputDirectory>
+			<outputDirectory>dbscript</outputDirectory>
 			<includes>
 				<include>*.sql</include>
 			</includes>
@@ -36,21 +36,21 @@
 		<!-- mvn install 打包 -->
 		<fileSet>
 			<directory>install/bin</directory>
-			<outputDirectory>/bin</outputDirectory>
+			<outputDirectory>bin</outputDirectory>
 			<includes>
 				<include>**.*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>install/tomcat</directory>
-			<outputDirectory>/tomcat</outputDirectory>
+			<outputDirectory>tomcat</outputDirectory>
 			<includes>
 				<include>**/**</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>../${project.parent.artifactId}.db</directory>
-			<outputDirectory>/dbscript</outputDirectory>
+			<outputDirectory>dbscript</outputDirectory>
 			<includes>
 				<include>*.sql</include>
 			</includes>
@@ -61,7 +61,7 @@
 		<!-- 复制配置文件和工程文件 -->
 		<fileSet>
 			<directory>src</directory>
-			<outputDirectory>/config</outputDirectory>
+			<outputDirectory>config</outputDirectory>
 			<includes>
 				<include>settings*.xml</include>
 				<include>logback.xml</include>
@@ -70,7 +70,7 @@
 		</fileSet>
 		<fileSet>
 			<directory>target/${artifactId}-${version}</directory>
-			<outputDirectory>/tomcat/webapps/ROOT</outputDirectory>
+			<outputDirectory>tomcat/webapps/ROOT</outputDirectory>
 			<includes>
 				<include>**/**</include>
 			</includes>
