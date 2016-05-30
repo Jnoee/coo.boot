@@ -10,8 +10,8 @@ import coo.core.security.service.AbstractBnLogger;
  */
 @Service
 public class BnLogger extends AbstractBnLogger<BnLog> {
-	@Override
-	public BnLog newBnLog() {
-		return new BnLog();
-	}
+  @Override
+  public BnLog newBnLog() {
+    return new BnLog();
+  }
 }

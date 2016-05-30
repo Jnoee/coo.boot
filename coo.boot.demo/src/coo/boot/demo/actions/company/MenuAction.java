@@ -10,12 +10,11 @@ import coo.core.security.annotations.Auth;
  */
 @Controller("company.menu")
 @RequestMapping("/company")
-@Auth({ "COMPANY_MANAGE", "EMPLOYEE_MANAGE" })
+@Auth({"COMPANY_MANAGE", "EMPLOYEE_MANAGE"})
 public class MenuAction {
-	/**
-	 * 查看菜单。
-	 */
-	@RequestMapping("menu")
-	public void menu() {
-	}
+  /**
+   * 查看菜单。
+   */
+  @RequestMapping("menu")
+  public void menu() {}
 }

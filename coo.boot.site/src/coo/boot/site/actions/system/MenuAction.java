@@ -13,10 +13,9 @@ import coo.core.security.permission.AdminPermission;
 @RequestMapping("/system")
 @Auth(AdminPermission.CODE)
 public class MenuAction {
-	/**
-	 * 查看菜单。
-	 */
-	@RequestMapping("menu")
-	public void menu() {
-	}
+  /**
+   * 查看菜单。
+   */
+  @RequestMapping("menu")
+  public void menu() {}
 }

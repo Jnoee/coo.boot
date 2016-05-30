@@ -14,12 +14,12 @@ import coo.mvc.api.ApiAction;
 @Controller
 @RequestMapping("/api/v1")
 public class ApiV1Action extends ApiAction {
-	@Resource
-	private ApiFacade apiFacade;
+  @Resource
+  private ApiFacade apiFacade;
 
-	@RequestMapping("login")
-	public LoginReply login(@Valid LoginQuery query) {
-		apiFacade.login(query.getUsername(), query.getPassword());
-		return new LoginReply();
-	}
+  @RequestMapping("login")
+  public LoginReply login(@Valid LoginQuery query) {
+    apiFacade.login(query.getUsername(), query.getPassword());
+    return new LoginReply();
+  }
 }

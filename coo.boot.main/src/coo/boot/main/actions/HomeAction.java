@@ -12,10 +12,9 @@ import coo.core.security.annotations.Auth;
 @RequestMapping("/")
 @Auth
 public class HomeAction {
-	/**
-	 * 查看首页。
-	 */
-	@RequestMapping("home")
-	public void home() {
-	}
+  /**
+   * 查看首页。
+   */
+  @RequestMapping("home")
+  public void home() {}
 }

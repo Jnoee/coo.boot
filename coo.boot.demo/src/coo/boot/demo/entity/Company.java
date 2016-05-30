@@ -41,70 +41,69 @@ import coo.core.security.annotations.LogField;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @XStreamAlias("company")
 public class Company extends UuidEntity {
-	private static final long serialVersionUID = -7079623780422163425L;
-	/** 名称 */
-	@NotBlank
-	@Field(analyze = Analyze.NO)
-	@LogField(text = "名称")
-	@SortableField
-	private String name;
-	/** 成立时间 */
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	@LogField(text = "成立时间", format = DateUtils.DAY)
-	private Date foundDate;
-	/** 是否可用 */
-	@NotNull
-	private Boolean enabled = true;
-	/** 扩展信息 */
-	@Type(type = "Json")
-	@LogBean({ @LogField(text = "地址", property = "address"),
-			@LogField(text = "电话", property = "tel"),
-			@LogField(text = "传真", property = "fax") })
-	private CompanyExtendInfo extendInfo;
-	/** 关联职员 */
-	@OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonManagedReference
-	@ContainedIn
-	private List<Employee> employees = new ArrayList<Employee>();
+  private static final long serialVersionUID = -7079623780422163425L;
+  /** 名称 */
+  @NotBlank
+  @Field(analyze = Analyze.NO)
+  @LogField(text = "名称")
+  @SortableField
+  private String name;
+  /** 成立时间 */
+  @NotNull
+  @Temporal(TemporalType.DATE)
+  @LogField(text = "成立时间", format = DateUtils.DAY)
+  private Date foundDate;
+  /** 是否可用 */
+  @NotNull
+  private Boolean enabled = true;
+  /** 扩展信息 */
+  @Type(type = "Json")
+  @LogBean({@LogField(text = "地址", property = "address"), @LogField(text = "电话", property = "tel"),
+      @LogField(text = "传真", property = "fax")})
+  private CompanyExtendInfo extendInfo;
+  /** 关联职员 */
+  @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JsonManagedReference
+  @ContainedIn
+  private List<Employee> employees = new ArrayList<Employee>();
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public Date getFoundDate() {
-		return foundDate;
-	}
+  public Date getFoundDate() {
+    return foundDate;
+  }
 
-	public void setFoundDate(Date foundDate) {
-		this.foundDate = foundDate;
-	}
+  public void setFoundDate(Date foundDate) {
+    this.foundDate = foundDate;
+  }
 
-	public Boolean getEnabled() {
-		return enabled;
-	}
+  public Boolean getEnabled() {
+    return enabled;
+  }
 
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
 
-	public CompanyExtendInfo getExtendInfo() {
-		return extendInfo;
-	}
+  public CompanyExtendInfo getExtendInfo() {
+    return extendInfo;
+  }
 
-	public void setExtendInfo(CompanyExtendInfo extendInfo) {
-		this.extendInfo = extendInfo;
-	}
+  public void setExtendInfo(CompanyExtendInfo extendInfo) {
+    this.extendInfo = extendInfo;
+  }
 
-	public List<Employee> getEmployees() {
-		return employees;
-	}
+  public List<Employee> getEmployees() {
+    return employees;
+  }
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
-	}
+  public void setEmployees(List<Employee> employees) {
+    this.employees = employees;
+  }
 }

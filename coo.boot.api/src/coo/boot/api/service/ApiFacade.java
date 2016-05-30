@@ -13,22 +13,20 @@ import coo.mvc.api.ApiUtils;
  */
 @Service
 public class ApiFacade {
-	@Resource
-	private SecurityService securityService;
+  @Resource
+  private SecurityService securityService;
 
-	/**
-	 * 登录。
-	 * 
-	 * @param username
-	 *            用户名
-	 * @param password
-	 *            密码
-	 */
-	public void login(String username, String password) {
-		try {
-			securityService.signIn(username, password, "255.255.255.255");
-		} catch (BusinessException e) {
-			ApiUtils.thrown("100", e.getMessage());
-		}
-	}
+  /**
+   * 登录。
+   * 
+   * @param username 用户名
+   * @param password 密码
+   */
+  public void login(String username, String password) {
+    try {
+      securityService.signIn(username, password, "255.255.255.255");
+    } catch (BusinessException e) {
+      ApiUtils.thrown("100", e.getMessage());
+    }
+  }
 }

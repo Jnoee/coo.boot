@@ -12,6 +12,5 @@ import coo.core.security.service.AbstractSecurityService;
  * 安全服务。
  */
 @Service
-public class SecurityService extends
-		AbstractSecurityService<Organ, User, Role, Actor> {
+public class SecurityService extends AbstractSecurityService<Organ, User, Role, Actor> {
 }

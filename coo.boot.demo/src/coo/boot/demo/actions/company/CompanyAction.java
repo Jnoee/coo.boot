@@ -20,85 +20,76 @@ import coo.mvc.dwz.DwzResultBuild;
 @RequestMapping("/company")
 @Auth("COMPANY_MANAGE")
 public class CompanyAction {
-	@Resource
-	private CompanyService companyService;
-	@Resource
-	private MessageSource messageSource;
+  @Resource
+  private CompanyService companyService;
+  @Resource
+  private MessageSource messageSource;
 
-	/**
-	 * 查看公司列表。
-	 * 
-	 * @param model
-	 *            数据模型
-	 */
-	@RequestMapping("company-list")
-	public void list(Model model) {
-		model.addAttribute("companys", companyService.getAllCompany());
-	}
+  /**
+   * 查看公司列表。
+   * 
+   * @param model 数据模型
+   */
+  @RequestMapping("company-list")
+  public void list(Model model) {
+    model.addAttribute("companys", companyService.getAllCompany());
+  }
 
-	/**
-	 * 新增公司。
-	 * 
-	 * @param model
-	 *            数据模型
-	 */
-	@RequestMapping("company-add")
-	public void add(Model model) {
-		model.addAttribute(new Company());
-	}
+  /**
+   * 新增公司。
+   * 
+   * @param model 数据模型
+   */
+  @RequestMapping("company-add")
+  public void add(Model model) {
+    model.addAttribute(new Company());
+  }
 
-	/**
-	 * 保存公司。
-	 * 
-	 * @param company
-	 *            公司
-	 * @return 返回提示信息。
-	 */
-	@RequestMapping("company-save")
-	public ModelAndView save(Company company) {
-		companyService.createCompany(company);
-		return new DwzResultBuild().success("company.add.success")
-				.closeDialog().reloadNavTab().build();
-	}
+  /**
+   * 保存公司。
+   * 
+   * @param company 公司
+   * @return 返回提示信息。
+   */
+  @RequestMapping("company-save")
+  public ModelAndView save(Company company) {
+    companyService.createCompany(company);
+    return new DwzResultBuild().success("company.add.success").closeDialog().reloadNavTab().build();
+  }
 
-	/**
-	 * 编辑公司。
-	 * 
-	 * @param model
-	 *            数据模型
-	 * @param company
-	 *            公司
-	 */
-	@RequestMapping("company-edit")
-	public void edit(Model model, Company company) {
-		model.addAttribute(company);
-	}
+  /**
+   * 编辑公司。
+   * 
+   * @param model 数据模型
+   * @param company 公司
+   */
+  @RequestMapping("company-edit")
+  public void edit(Model model, Company company) {
+    model.addAttribute(company);
+  }
 
-	/**
-	 * 更新公司。
-	 * 
-	 * @param company
-	 *            公司
-	 * @return 返回提示信息。
-	 */
-	@RequestMapping("company-update")
-	public ModelAndView update(Company company) {
-		companyService.updateCompany(company);
-		return new DwzResultBuild().success("company.edit.success")
-				.closeDialog().reloadNavTab().build();
-	}
+  /**
+   * 更新公司。
+   * 
+   * @param company 公司
+   * @return 返回提示信息。
+   */
+  @RequestMapping("company-update")
+  public ModelAndView update(Company company) {
+    companyService.updateCompany(company);
+    return new DwzResultBuild().success("company.edit.success").closeDialog().reloadNavTab()
+        .build();
+  }
 
-	/**
-	 * 删除公司。
-	 * 
-	 * @param company
-	 *            公司
-	 * @return 返回提示信息。
-	 */
-	@RequestMapping("company-delete")
-	public ModelAndView delete(Company company) {
-		companyService.deleteCompany(company);
-		return new DwzResultBuild().success("company.delete.success")
-				.reloadNavTab().build();
-	}
+  /**
+   * 删除公司。
+   * 
+   * @param company 公司
+   * @return 返回提示信息。
+   */
+  @RequestMapping("company-delete")
+  public ModelAndView delete(Company company) {
+    companyService.deleteCompany(company);
+    return new DwzResultBuild().success("company.delete.success").reloadNavTab().build();
+  }
 }

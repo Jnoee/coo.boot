@@ -9,13 +9,13 @@ import coo.mvc.config.AbstractFreeMarkerSettings;
  */
 @Component("coo.boot.site.config.FreeMarkerSettings")
 public class FreeMarkerSettings extends AbstractFreeMarkerSettings {
-	/**
-	 * 构造方法。
-	 */
-	public FreeMarkerSettings() {
-		setOrder(100);
-		addTemplatePath("classpath:/coo/boot/site/actions/");
-		addTemplatePath("classpath:/coo/boot/site/macros/");
-		addAutoImport("sys", "sys.ftl");
-	}
+  /**
+   * 构造方法。
+   */
+  public FreeMarkerSettings() {
+    setOrder(100);
+    addTemplatePath("classpath:/coo/boot/site/actions/");
+    addTemplatePath("classpath:/coo/boot/site/macros/");
+    addAutoImport("sys", "sys.ftl");
+  }
 }

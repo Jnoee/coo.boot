@@ -16,17 +16,16 @@ import coo.core.security.annotations.Auth;
 @RequestMapping("/")
 @Auth
 public class IndexAction {
-	@Resource
-	private SecurityService securityService;
+  @Resource
+  private SecurityService securityService;
 
-	/**
-	 * 查看主页。
-	 * 
-	 * @param model
-	 *            数据模型
-	 */
-	@RequestMapping("index")
-	public void index(Model model) {
-		model.addAttribute("currentUser", securityService.getCurrentUser());
-	}
+  /**
+   * 查看主页。
+   * 
+   * @param model 数据模型
+   */
+  @RequestMapping("index")
+  public void index(Model model) {
+    model.addAttribute("currentUser", securityService.getCurrentUser());
+  }
 }

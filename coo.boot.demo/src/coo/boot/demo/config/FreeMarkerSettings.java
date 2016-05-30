@@ -9,12 +9,12 @@ import coo.mvc.config.AbstractFreeMarkerSettings;
  */
 @Component("coo.boot.demo.config.FreeMarkerSettings")
 public class FreeMarkerSettings extends AbstractFreeMarkerSettings {
-	/**
-	 * 构造方法。
-	 */
-	public FreeMarkerSettings() {
-		setOrder(100);
-		addTemplatePath("classpath:/coo/boot/demo/actions/");
-		addEnumPackage("coo.boot.demo.enums");
-	}
+  /**
+   * 构造方法。
+   */
+  public FreeMarkerSettings() {
+    setOrder(100);
+    addTemplatePath("classpath:/coo/boot/demo/actions/");
+    addEnumPackage("coo.boot.demo.enums");
+  }
 }

@@ -15,5 +15,5 @@ import coo.core.security.entity.RoleEntity;
 @Table(name = "Role")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Role extends RoleEntity<User, Actor> {
-	private static final long serialVersionUID = 6906333329211672538L;
+  private static final long serialVersionUID = 6906333329211672538L;
 }

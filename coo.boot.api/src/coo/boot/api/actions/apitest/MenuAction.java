@@ -10,7 +10,6 @@ import coo.core.security.permission.AdminPermission;
 @RequestMapping("/apitest")
 @Auth(AdminPermission.CODE)
 public class MenuAction {
-	@RequestMapping("menu")
-	public void menu() {
-	}
+  @RequestMapping("menu")
+  public void menu() {}
 }

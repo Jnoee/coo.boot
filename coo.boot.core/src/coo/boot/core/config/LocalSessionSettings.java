@@ -9,10 +9,10 @@ import coo.core.hibernate.AbstractLocalSessionSettings;
  */
 @Component("coo.boot.core.config.LocalSessionSettings")
 public class LocalSessionSettings extends AbstractLocalSessionSettings {
-	/**
-	 * 构造方法。
-	 */
-	public LocalSessionSettings() {
-		addPackageToScan("coo.boot.core.entity");
-	}
+  /**
+   * 构造方法。
+   */
+  public LocalSessionSettings() {
+    addPackageToScan("coo.boot.core.entity");
+  }
 }
