@@ -71,10 +71,16 @@
 			<remove path="/:project/:properties/:jgit.version" />
 			<remove path="/:project/:properties/:project.scm.id" />
 			<remove path="/:project/:build/:plugins/:plugin[:artifactId/text()='maven-gpg-plugin']" />
+			<remove path="/:project/:build/:plugins/:plugin[:artifactId/text()='maven-release-plugin']" />
 			<remove path="/:project/:scm" />
 			<remove path="/:project/:distributionManagement" />
 			<remove path="/:project/:modules/:module[text()='${origArtifactId}.demo']" />
 		</xmltask>
+		<replaceregexp file="${destDir}/pom.xml" match="^[ |\t]*[\n|\r\n]+" flags="gm" replace="" />
+		<xmltask source="${destDir}/${origArtifactId}.main/pom.xml" dest="${destDir}/${origArtifactId}.main/pom.xml" encoding="UTF-8">
+			<remove path="/:project/:dependencies/:dependency[:artifactId/text()='${origArtifactId}.demo']" />
+		</xmltask>
+		<replaceregexp file="${destDir}/${origArtifactId}.main/pom.xml" match="^[ |\t]*[\n|\r\n]+" flags="gm" replace="" />
 		<foreach list="${moduleNames}" target="modify.pom.each" param="moduleName" delimiter="," inheritall="yes" />
 	</target>
 
