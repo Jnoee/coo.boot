@@ -37,7 +37,7 @@ public class EmployeeAction {
    */
   @RequestMapping("employee-list")
   public void list(Model model, SearchModel searchModel) {
-    model.addAttribute("employeePage", employeeService.searchEmployee(searchModel));
+    model.addAttribute("employeePage", employeeService.search(searchModel));
   }
 
   /**
@@ -48,7 +48,7 @@ public class EmployeeAction {
   @RequestMapping("employee-add")
   public void add(Model model) {
     model.addAttribute(new Employee());
-    model.addAttribute("companys", companyService.getAllCompany());
+    model.addAttribute("companys", companyService.getAll());
   }
 
   /**
@@ -60,7 +60,7 @@ public class EmployeeAction {
    */
   @RequestMapping("employee-save")
   public ModelAndView save(Employee employee) {
-    employeeService.createEmployee(employee);
+    employeeService.create(employee);
     return new DwzResultBuild().success("employee.add.success").closeDialog().reloadNavTab()
         .build();
   }
@@ -73,7 +73,7 @@ public class EmployeeAction {
    */
   @RequestMapping("employee-edit")
   public void edit(Model model, Employee employee) {
-    model.addAttribute("companys", companyService.getAllCompany());
+    model.addAttribute("companys", companyService.getAll());
   }
 
   /**
@@ -85,7 +85,7 @@ public class EmployeeAction {
    */
   @RequestMapping("employee-update")
   public ModelAndView update(Employee employee) {
-    employeeService.updateEmployee(employee);
+    employeeService.update(employee);
     return new DwzResultBuild().success("employee.edit.success").closeDialog().reloadNavTab()
         .build();
   }
@@ -99,7 +99,7 @@ public class EmployeeAction {
    */
   @RequestMapping("employee-delete")
   public ModelAndView delete(Employee employee) {
-    employeeService.deleteEmployee(employee);
+    employeeService.delete(employee);
     return new DwzResultBuild().success("employee.delete.success").reloadNavTab().build();
   }
 }

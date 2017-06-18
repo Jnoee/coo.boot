@@ -21,59 +21,32 @@ public class EmployeeService {
   @Resource
   private Dao<Employee> employeeDao;
 
-  /**
-   * 分页搜索职员。
-   * 
-   * @param searchModel 搜索条件
-   * @return 返回符合条件的职员分页对象。
-   */
   @Transactional(readOnly = true)
-  public Page<Employee> searchEmployee(SearchModel searchModel) {
+  public Page<Employee> search(SearchModel searchModel) {
     FullTextCriteria criteria = employeeDao.createFullTextCriteria();
     return employeeDao.searchPage(criteria, searchModel);
   }
 
-  /**
-   * 获取职员。
-   * 
-   * @param employeeId 职员ID
-   * @return 返回指定ID的职员。
-   */
   @Transactional(readOnly = true)
-  public Employee getEmployee(String employeeId) {
+  public Employee get(String employeeId) {
     return employeeDao.get(employeeId);
   }
 
-  /**
-   * 新增职员。
-   * 
-   * @param employee 职员
-   */
   @Transactional
   @AutoFillIn
-  public void createEmployee(Employee employee) {
+  public void create(Employee employee) {
     employeeDao.save(employee);
   }
 
-  /**
-   * 更新职员。
-   * 
-   * @param employee 职员
-   */
   @Transactional
   @AutoFillIn
-  public void updateEmployee(Employee employee) {
+  public void update(Employee employee) {
     Employee origEmployee = employeeDao.get(employee.getId());
     BeanUtils.copyFields(employee, origEmployee);
   }
 
-  /**
-   * 删除职员。
-   * 
-   * @param employee 职员
-   */
   @Transactional
-  public void deleteEmployee(Employee employee) {
+  public void delete(Employee employee) {
     employeeDao.remove(employee);
   }
 }

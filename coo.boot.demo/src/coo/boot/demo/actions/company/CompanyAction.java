@@ -32,7 +32,7 @@ public class CompanyAction {
    */
   @RequestMapping("company-list")
   public void list(Model model) {
-    model.addAttribute("companys", companyService.getAllCompany());
+    model.addAttribute("companys", companyService.getAll());
   }
 
   /**
@@ -53,7 +53,7 @@ public class CompanyAction {
    */
   @RequestMapping("company-save")
   public ModelAndView save(Company company) {
-    companyService.createCompany(company);
+    companyService.create(company);
     return new DwzResultBuild().success("company.add.success").closeDialog().reloadNavTab().build();
   }
 
@@ -76,7 +76,7 @@ public class CompanyAction {
    */
   @RequestMapping("company-update")
   public ModelAndView update(Company company) {
-    companyService.updateCompany(company);
+    companyService.update(company);
     return new DwzResultBuild().success("company.edit.success").closeDialog().reloadNavTab()
         .build();
   }
@@ -89,7 +89,7 @@ public class CompanyAction {
    */
   @RequestMapping("company-delete")
   public ModelAndView delete(Company company) {
-    companyService.deleteCompany(company);
+    companyService.delete(company);
     return new DwzResultBuild().success("company.delete.success").reloadNavTab().build();
   }
 }

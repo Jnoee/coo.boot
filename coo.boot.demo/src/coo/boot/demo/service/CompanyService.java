@@ -29,51 +29,30 @@ public class CompanyService {
   @Resource
   private MessageSource messageSource;
 
-  /**
-   * 获取所有公司列表。
-   * 
-   * @return 返回所有公司列表。
-   */
   @Transactional(readOnly = true)
-  public List<Company> getAllCompany() {
+  public List<Company> getAll() {
     return companyDao.searchAll("name", true, SortField.Type.STRING);
   }
 
-  /**
-   * 获取公司。
-   * 
-   * @param companyId 公司ID
-   * @return 返回公司。
-   */
   @Transactional(readOnly = true)
-  public Company getCompany(String companyId) {
+  public Company get(String companyId) {
     return companyDao.get(companyId);
   }
 
-  /**
-   * 新增公司。
-   * 
-   * @param company 公司
-   */
   @Transactional
   @DetailLog(target = "company", code = "company.add.log", vars = "company.name",
       type = LogType.NEW)
-  public void createCompany(Company company) {
+  public void create(Company company) {
     if (!companyDao.isUnique(company, "name")) {
       messageSource.thrown("company.name.exist");
     }
     companyDao.save(company);
   }
 
-  /**
-   * 更新公司。
-   * 
-   * @param company 公司
-   */
   @Transactional
   @DetailLog(target = "company", code = "company.edit.log", vars = "company.name",
       type = LogType.ALL)
-  public void updateCompany(Company company) {
+  public void update(Company company) {
     if (!companyDao.isUnique(company, "name")) {
       messageSource.thrown("company.name.exist");
     }
@@ -81,14 +60,9 @@ public class CompanyService {
     BeanUtils.copyFields(company, origCompany);
   }
 
-  /**
-   * 删除公司。
-   * 
-   * @param company 公司
-   */
   @Transactional
-  @SimpleLog(entityId = "company.id", code = "company.delete.success")
-  public void deleteCompany(Company company) {
+  @SimpleLog(entityId = "company.id", code = "company.delete.log", vars="company.name")
+  public void delete(Company company) {
     companyDao.remove(company);
   }
 
@@ -96,14 +70,14 @@ public class CompanyService {
    * 自动创建公司，用于定时任务。
    */
   @Transactional
-  public Company autoCreateCompany() {
+  public Company autoCreate() {
     Company company = new Company();
     company.setName("c" + DateUtils.format(new Date(), DateUtils.SECOND_N));
     company.setFoundDate(new Date());
     CompanyExtendInfo extendInfo = new CompanyExtendInfo();
     extendInfo.setTel("12345678");
     company.setExtendInfo(extendInfo);
-    createCompany(company);
+    create(company);
     return company;
   }
 }
