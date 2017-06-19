@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -21,10 +20,6 @@ import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.SortableField;
-import org.hibernate.validator.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 import coo.base.util.DateUtils;
 import coo.boot.demo.model.CompanyExtendInfo;
@@ -39,22 +34,18 @@ import coo.core.security.annotations.LogField;
 @Table(name = "Company")
 @Indexed(index = "Company")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@XStreamAlias("company")
 public class Company extends UuidEntity {
   private static final long serialVersionUID = -7079623780422163425L;
   /** 名称 */
-  @NotBlank
   @Field(analyze = Analyze.NO)
   @LogField(text = "名称")
   @SortableField
   private String name;
   /** 成立时间 */
-  @NotNull
   @Temporal(TemporalType.DATE)
   @LogField(text = "成立时间", format = DateUtils.DAY)
   private Date foundDate;
   /** 是否可用 */
-  @NotNull
   private Boolean enabled = true;
   /** 扩展信息 */
   @Type(type = "Json")
@@ -63,7 +54,6 @@ public class Company extends UuidEntity {
   private CompanyExtendInfo extendInfo;
   /** 关联职员 */
   @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JsonManagedReference
   @ContainedIn
   private List<Employee> employees = new ArrayList<Employee>();
 

@@ -5,7 +5,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -15,12 +14,6 @@ import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.Range;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 import coo.boot.core.entity.User;
 import coo.boot.demo.enums.Sex;
@@ -35,23 +28,17 @@ import coo.core.security.entity.ResourceEntity;
 @Table(name = "Employee")
 @Indexed(index = "Employee")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@XStreamAlias("employee")
-@JsonIgnoreProperties({"creator", "modifier"})
 public class Employee extends ResourceEntity<User> {
   private static final long serialVersionUID = 5408086709494267860L;
   /** 关联部门 */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "companyId")
   @IndexedEmbedded(includePaths = "name")
-  @JsonBackReference
   private Company company;
   /** 姓名 */
-  @NotBlank
   @Field(analyze = Analyze.NO)
   private String name;
   /** 年龄 */
-  @NotNull
-  @Range(min = 1, max = 999)
   private Integer age = 18;
   /** 性别 */
   @Type(type = "IEnum")
