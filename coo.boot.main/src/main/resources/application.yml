@@ -1,0 +1,22 @@
+debug: false
+
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    initialize: false
+
+coo:
+  druid:
+    url: jdbc:mysql://localhost:3306/coo?autoReconnect=true&characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: root
+    maxActive: 100
+    minIdle: 10
+    initialSize: 10
+    filters: stat,slf4j
+  hibernate:
+    dialect: org.hibernate.dialect.MySQL5Dialect
+    showSql: true
+  task:
+    executorPoolSize: 5
