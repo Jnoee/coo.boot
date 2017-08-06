@@ -11,16 +11,9 @@
 		<!-- mvn release:perform 打包 -->
 		<fileSet>
 			<directory>../../install/bin</directory>
-			<outputDirectory>bin</outputDirectory>
+			<outputDirectory>.</outputDirectory>
 			<includes>
 				<include>**.*</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<directory>../../install/tomcat</directory>
-			<outputDirectory>tomcat</outputDirectory>
-			<includes>
-				<include>**/**</include>
 			</includes>
 		</fileSet>
 		<fileSet>
@@ -36,16 +29,9 @@
 		<!-- mvn install 打包 -->
 		<fileSet>
 			<directory>install/bin</directory>
-			<outputDirectory>bin</outputDirectory>
+			<outputDirectory>.</outputDirectory>
 			<includes>
 				<include>**.*</include>
-			</includes>
-		</fileSet>
-		<fileSet>
-			<directory>install/tomcat</directory>
-			<outputDirectory>tomcat</outputDirectory>
-			<includes>
-				<include>**/**</include>
 			</includes>
 		</fileSet>
 		<fileSet>
@@ -60,26 +46,18 @@
 		</fileSet>
 		<!-- 复制配置文件和工程文件 -->
 		<fileSet>
-			<directory>src</directory>
+			<directory>src/main/resources</directory>
 			<outputDirectory>config</outputDirectory>
 			<includes>
-				<include>settings*.xml</include>
-				<include>logback.xml</include>
-				<include>ehcache.xml</include>
+				<include>application.yml</include>
 			</includes>
 		</fileSet>
 		<fileSet>
-			<directory>target/${artifactId}-${version}</directory>
-			<outputDirectory>tomcat/webapps/ROOT</outputDirectory>
+			<directory>target</directory>
+			<outputDirectory>.</outputDirectory>
 			<includes>
-				<include>**/**</include>
+				<include>${artifactId}-${version}.war</include>
 			</includes>
-			<excludes>
-				<exclude>**/settings*.xml</exclude>
-				<exclude>**/logback.xml</exclude>
-				<exclude>**/logback-test.xml</exclude>
-				<exclude>**/ehcache.xml</exclude>
-			</excludes>
 		</fileSet>
 	</fileSets>
 </assembly>

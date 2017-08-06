@@ -93,6 +93,7 @@
 					<encoding>${encoding}</encoding>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>${plugin.javadoc.version}</version>
@@ -122,19 +123,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>${plugin.war.version}</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<webResources>
-						<resource>
-							<directory>webapp</directory>
-						</resource>
-					</webResources>
-				</configuration>
-			</plugin>
-			<!-- 
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<version>${plugin.release.version}</version>
