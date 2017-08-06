@@ -11,12 +11,21 @@ import coo.boot.api.model.LoginReply;
 import coo.boot.api.service.ApiFacade;
 import coo.mvc.api.ApiAction;
 
+/**
+ * API。
+ */
 @Controller
 @RequestMapping("/api/v1")
 public class ApiV1Action extends ApiAction {
   @Resource
   private ApiFacade apiFacade;
 
+  /**
+   * 登录。
+   * 
+   * @param query 请求对象
+   * @return 返回响应对象。
+   */
   @RequestMapping("login")
   public LoginReply login(@Valid LoginQuery query) {
     apiFacade.login(query.getUsername(), query.getPassword());

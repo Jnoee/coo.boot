@@ -68,6 +68,8 @@ public class CompanyService {
 
   /**
    * 自动创建公司，用于定时任务。
+   * 
+   * @return 返回创建的公司。
    */
   @Transactional
   public Company autoCreate() {
