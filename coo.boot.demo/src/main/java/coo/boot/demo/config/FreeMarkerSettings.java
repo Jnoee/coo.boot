@@ -2,6 +2,8 @@ package coo.boot.demo.config;
 
 import org.springframework.stereotype.Component;
 
+import coo.boot.demo.enums.Interest;
+import coo.boot.demo.enums.Sex;
 import coo.mvc.freemarker.AbstractFreeMarkerSettings;
 
 /**
@@ -15,6 +17,6 @@ public class FreeMarkerSettings extends AbstractFreeMarkerSettings {
   public FreeMarkerSettings() {
     setOrder(100);
     addTemplatePath("classpath:/coo/boot/demo/actions/");
-    addEnumPackage("coo.boot.demo.enums");
+    addEnumClass(Sex.class, Interest.class);
   }
 }
